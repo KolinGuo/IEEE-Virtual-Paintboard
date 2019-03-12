@@ -1,0 +1,679 @@
+//*****************************************************************************
+//
+// Application Name     - Lab6
+// Application Overview - The application focuses on using ultrasonic sensors
+//						  to implement a virtual sketchpad. Users can use
+// 						  fingers to sketch, and IR remote to change 
+//						  configurations. The sketch is displayed on a 128x128
+//						  OLED display in real time. When finished sketching, 
+//						  the picture is being sent to AWS and then sent back 
+//						  to the user in digital format through some protocol.
+//                        Due to hardware rectrictions, the image is only 32x32
+// Author               - Kolin Guo, Yizhi Tao
+//
+//*****************************************************************************
+
+// Standard includes
+#include <stdio.h>
+#include <string.h>
+#include <stdint.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+// Driverlib includes
+#include "hw_types.h"
+#include "hw_ints.h"
+#include "hw_timer.h"
+#include "hw_memmap.h"
+#include "hw_common_reg.h"
+#include "gpio.h"
+#include "spi.h"
+#include "rom.h"
+#include "rom_map.h"
+#include "interrupt.h"
+#include "prcm.h"
+#include "utils.h"
+#include "uart.h"
+#include "timer.h"
+#include "wlan.h"
+#include "common.h"
+#include "pin.h"
+
+// Common interface includes
+#include "uart_if.h"
+#include "gpio_if.h"
+#include "timer_if.h"
+#include "pin_mux_config.h"
+
+// OLED interface includes
+#include "Adafruit_GFX.h"
+#include "Adafruit_SSD1351.h"
+#include "glcdfont.h"
+#include "test.h"
+
+// Image processing includes
+#include "camera_app.h"
+
+//*****************************************************************************
+//                      MACRO DEFINITIONS
+//*****************************************************************************
+#define UART_PRINT              Report
+#define FOREVER                 1
+#define CONSOLE                 UARTA0_BASE
+#define FAILURE                 -1
+#define SUCCESS                 0
+#define RETERR_IF_TRUE(condition) {if(condition) return FAILURE;}
+#define RET_IF_ERR(Func)          {int iRetVal = (Func); \
+                                   if (SUCCESS != iRetVal) \
+                                     return  iRetVal;}
+#define SPI_IF_BIT_RATE  100000
+// 0 for disabling color changing of the ball using accel_z
+// 1 for enabling color changing of the ball using accel_z
+#define COLORCHAOS              1
+// refreshing time for drawing the ball (in ms)
+#define REFRESHTIME             5
+// IR Data for Keys
+#define KEY0 0b00000000
+#define KEY1 0b10000000
+#define KEY2 0b01000000
+#define KEY3 0b11000000
+#define KEY4 0b00100000
+#define KEY5 0b10100000
+#define KEY6 0b01100000
+#define KEY7 0b11100000
+#define KEY8 0b00010000
+#define KEY9 0b10010000
+#define ENTER 0b00000010
+#define DEL 0b00001000
+
+//*****************************************************************************
+//                 GLOBAL VARIABLES -- Start
+//*****************************************************************************
+static volatile unsigned long g_ulBase;		// TIMERA0_BASE
+unsigned long g_ulTimerInts;
+unsigned long g_IRReceive = 0;
+bool isLeaderCodeReceived = 0, isFullyReceived = 0;
+
+unsigned char g_red, g_green, g_blue;
+unsigned int g_OLEDred, g_OLEDgreen, g_OLEDblue;    // RGB565
+int g_pxx_map, g_pxy_map, g_pxx, g_pxy;
+const int PX_LOC_LOWER_BOUND = 365;
+unsigned long* g_imageRGB;	// 0x00RRGGBB for 1 px, a total of 32x32 px, 1024
+
+// For U/S: U/S1 detects x location, U/S2 detects y location
+const double temp = 1.0 / 8.0;
+//Stores the pulse length
+volatile uint32_t g_pulse1 = 0;
+volatile uint32_t g_pulse2 = 0;
+//Tells the main code if the a pulse is being read at the moment
+int echowait1 = 0;
+int echowait2 = 0;
+
+#if defined(ccs)
+extern void (* const g_pfnVectors[])(void);
+#endif
+#if defined(ewarm)
+extern uVectorEntry __vector_table;
+#endif
+//*****************************************************************************
+//                 GLOBAL VARIABLES -- End
+//*****************************************************************************
+
+//*****************************************************************************
+//                      STRUCT -- Start
+//*****************************************************************************
+typedef struct Acceleration_struct
+{
+    unsigned char accel_x, accel_y, accel_z;
+} Acceleration;
+//*****************************************************************************
+//                      STRUCT -- End
+//*****************************************************************************
+
+
+//*****************************************************************************
+//                      LOCAL FUNCTION PROTOTYPES
+//*****************************************************************************
+static void IRIntHandler();
+void US1IntHandler();
+void US2IntHandler();
+void ConvertToPixelLoc();
+void TimerIntHandler();
+static void BoardInit(void);
+void PostAWS();
+void GetIRInput();
+void StartSketching();
+
+//****************************************************************************
+//                      LOCAL FUNCTION DEFINITIONS                          
+//****************************************************************************
+
+//*****************************************************************************
+//
+//! The interrupt handler for IR sensor interrupt.
+//!
+//! \param  None
+//!
+//! \return none
+//
+//*****************************************************************************
+static void IRIntHandler()
+{
+    unsigned long ulStatus;
+
+    // clear interrupts on GPIOA1
+    ulStatus = MAP_GPIOIntStatus (GPIOA1_BASE, true);
+    MAP_GPIOIntClear(GPIOA1_BASE, ulStatus);
+
+    Timer_IF_Stop(g_ulBase, TIMER_A);
+
+    if(isLeaderCodeReceived && g_ulTimerInts == 1)     // if 0 is received
+        g_IRReceive <<= 1;
+    else if(isLeaderCodeReceived && g_ulTimerInts == 2)     // if 1 is received
+    {
+        g_IRReceive++;
+        // this will lose the MSB bit (1st bit we received) which is useless here
+        g_IRReceive <<= 1;
+    }
+    else if(isLeaderCodeReceived && g_ulTimerInts > 15)     // if fully received
+    {
+        isLeaderCodeReceived = 0;
+        isFullyReceived = 1;
+    }
+    else if(g_ulTimerInts == 13)     // if leader code received
+    {
+        g_IRReceive = 0;
+        isLeaderCodeReceived = 1;
+        isFullyReceived = 0;
+    }
+
+    // Reset Timer Interrupt Count
+    g_ulTimerInts = 0;
+    Timer_IF_Start(g_ulBase, TIMER_A, 1);
+}
+
+//*****************************************************************************
+//
+//! The interrupt handler for U/S Echo1 interrupt.
+//!
+//! \param  None
+//!
+//! \return none
+//
+//*****************************************************************************
+void US1IntHandler()
+{
+    //Clear interrupt flag. Since we only enabled on this is enough
+    MAP_GPIOIntClear(GPIOA2_BASE,PIN_08);
+
+    /*
+    If it's a rising edge then set he timer to 0
+    It's in periodic mode so it was in some random value
+    */
+    if (GPIOPinRead(GPIOA2_BASE,PIN_08) == 2)
+    {
+        HWREG(TIMERA3_BASE + TIMER_O_TAV ) = 0; //Loads value 0 into the timer.
+
+        // TimerLoadSet(TIMERA3_BASE,TIMER_A,0xFFFFFFFF);
+        long ad = MAP_TimerLoadGet(TIMERA3_BASE,TIMER_A);
+        //Report("load = %dcm \n\r" , ad);
+        TimerEnable(TIMERA3_BASE,TIMER_A);
+        echowait1 = 1;
+    }
+    /*
+    If it's a falling edge that was detected, then get the value of the counter
+    */
+    else
+    {
+        g_pulse1 = TimerValueGet(TIMERA3_BASE,TIMER_A);
+        long af = GPIOPinRead(GPIOA2_BASE,PIN_08);
+        //Report("pin = %dcm \n\r" , af);
+        // Report("distance = %dcm \n\r" , pulse);//record value
+        TimerDisable(TIMERA3_BASE,TIMER_A);
+        echowait1 = 0;
+    }
+}
+
+//*****************************************************************************
+//
+//! The interrupt handler for U/S Echo2 interrupt.
+//!
+//! \param  None
+//!
+//! \return none
+//
+//*****************************************************************************
+void US2IntHandler()
+{
+    //Clear interrupt flag. Since we only enabled on this is enough
+    MAP_GPIOIntClear(GPIOA0_BASE,PIN_50);
+
+    /*
+    If it's a rising edge then set he timer to 0
+    It's in periodic mode so it was in some random value
+    */
+    if (GPIOPinRead(GPIOA0_BASE,PIN_50) == PIN_50)
+    {
+        HWREG(TIMERA1_BASE + TIMER_O_TAV ) = 0; //Loads value 0 into the timer.
+
+        // TimerLoadSet(TIMERA3_BASE,TIMER_A,0xFFFFFFFF);
+        long ad = MAP_TimerLoadGet(TIMERA1_BASE,TIMER_A);
+        //Report("load = %dcm \n\r" , ad);
+        TimerEnable(TIMERA1_BASE,TIMER_A);
+        echowait2 = 1;
+    }
+    /*
+    If it's a falling edge that was detected, then get the value of the counter
+    */
+    else
+    {
+        g_pulse2 = TimerValueGet(TIMERA1_BASE,TIMER_A);
+        long af = GPIOPinRead(GPIOA0_BASE,PIN_50);
+        //Report("pin = %dcm \n\r" , af);
+        // Report("distance = %dcm \n\r" , pulse);//record value
+        TimerDisable(TIMERA1_BASE,TIMER_A);
+        echowait2 = 0;
+    }
+}
+
+//*****************************************************************************
+//
+//! The interrupt handler for the timer interrupt.
+//!
+//! \param  None
+//!
+//! \return none
+//
+//*****************************************************************************
+void TimerIntHandler()
+{
+    // Clear the timer interrupt.
+    Timer_IF_InterruptClear(g_ulBase);
+
+    g_ulTimerInts++;
+}
+
+//*****************************************************************************
+//
+//! Board Initialization & Configuration
+//!
+//! \param  None
+//!
+//! \return None
+//
+//*****************************************************************************
+static void BoardInit(void)
+{
+/* In case of TI-RTOS vector table is initialize by OS itself */
+#ifndef USE_TIRTOS
+    //
+    // Set vector table base
+    //
+#if defined(ccs)
+    MAP_IntVTableBaseSet((unsigned long)&g_pfnVectors[0]);
+#endif
+#if defined(ewarm)
+    MAP_IntVTableBaseSet((unsigned long)&__vector_table);
+#endif
+#endif
+    //
+    // Enable Processor
+    //
+    MAP_IntMasterEnable();
+    MAP_IntEnable(FAULT_SYSTICK);
+
+    PRCMCC3200MCUInit();
+}
+
+//*****************************************************************************
+//
+//! Sent the sketch to AWS
+//!
+//! \param  None
+//!
+//! \return None
+//
+//*****************************************************************************
+void PostAWS()
+{
+	
+}
+
+//*****************************************************************************
+//
+//! Change RGB color according to IR sensor input
+//!
+//! \param  key     : an unsigned int, the key stroke
+//!
+//! \return None
+//
+//*****************************************************************************
+void ChangeRGBColor(unsigned int key)
+{
+    switch(key)
+    {
+        case 0: g_red = 0;      g_green = 0;      g_blue = 0;      break;   // black
+        case 1: g_red = 255;    g_green = 255;    g_blue = 255;    break;   // white
+        case 2: g_red = 255;    g_green = 0;      g_blue = 0;      break;   // red
+        case 3: g_red = 255;    g_green = 128;    g_blue = 0;      break;   // orange
+        case 4: g_red = 255;    g_green = 255;    g_blue = 0;      break;   // yellow
+        case 5: g_red = 0;      g_green = 255;    g_blue = 0;      break;   // green
+        case 6: g_red = 0;      g_green = 255;    g_blue = 255;    break;   // cyan
+        case 7: g_red = 0;      g_green = 128;    g_blue = 255;    break;   // azure
+        case 8: g_red = 0;      g_green = 0;      g_blue = 255;    break;   // blue
+        case 9: g_red = 127;    g_green = 0;      g_blue = 255;    break;   // purple
+    }
+}
+
+//*****************************************************************************
+//
+//! Get input from IR Sensor
+//!
+//! \param  None
+//!
+//! \return None
+//
+//*****************************************************************************
+void GetIRInput()
+{
+	// If we received a full sequence of nonzero information from IR
+	if(isFullyReceived && g_IRReceive != 0)
+	{
+		g_IRReceive >>= 1;          // rearrange the bits
+		g_IRReceive &= 0x0000FF00;
+		g_IRReceive >>= 8;
+
+		switch(g_IRReceive)
+		{
+			case KEY0:  ChangeRGBColor(0);		    break;
+			case KEY1:  ChangeRGBColor(1);          break;
+			case KEY2:  ChangeRGBColor(2);          break;
+			case KEY3:  ChangeRGBColor(3);          break;
+			case KEY4:  ChangeRGBColor(4);          break;
+			case KEY5:  ChangeRGBColor(5);          break;
+			case KEY6:  ChangeRGBColor(6);          break;
+			case KEY7:  ChangeRGBColor(7);          break;
+			case KEY8:  ChangeRGBColor(8);          break;
+			case KEY9:  ChangeRGBColor(9);          break;
+			case ENTER: GenerateImage(g_imageRGB);  break;
+			case DEL:
+
+				break;
+			default:    Message("DIE\n\r");
+		}
+		g_IRReceive = 0;
+	}
+}
+
+//*****************************************************************************
+//
+//! Collect data from the two ultrasonic sensors
+//!
+//! \param  None
+//!
+//! \return None
+//
+//*****************************************************************************
+void CollectUSData()
+{
+    //Checks if a pulse read is in progress
+    if((echowait1 != 1) && (echowait2 != 1))
+    {
+        //Does the required pulse of 10uS
+        MAP_GPIOPinWrite(GPIOA1_BASE, PIN_64, PIN_64);
+        UtilsDelay(266);
+        MAP_GPIOPinWrite(GPIOA1_BASE, PIN_64, ~PIN_64);
+
+        /*
+        This makes the code wait for a reading to finish
+        You can omit this part if you want the code to be non-blocking but
+        reading is only ready when echowait1=0.
+        */
+        while((echowait1 != 0 || echowait2 !=0));
+
+        //Converts the counter value to cm. TempValueC = (uint32_t)(147.5 - ((75.0*3.3 *(float)ADCValues[0])) / 4096.0);
+        //Report("distance = %dcm \n" , pulse);
+        g_pulse1 = (uint32_t)(temp * g_pulse1);
+        g_pulse1 = g_pulse1 / 58;
+
+        g_pulse2 = (uint32_t)(temp * g_pulse2);
+        g_pulse2 = g_pulse2 / 58;
+        
+        // Convert the sensor data to pixel location
+        ConvertToPixelLoc();
+        // //Prints out the distance measured.
+        // Report("distance = %2dcm \n\r" , g_pulse1);
+        // Report("distance2 = %2dcm \n\r" , g_pulse2);
+    }
+    // //wait about 10ms until the next reading.
+    UtilsDelay(800000);
+}
+
+//*****************************************************************************
+//
+//! Covert sensor data to pixel location
+//!
+//! \param  None
+//!
+//! \return None
+//
+//*****************************************************************************
+void ConvertToPixelLoc()
+{
+    // px location of 0~31, later maps to 0~127   
+    g_pxx_map = (g_pulse1 - PX_LOC_LOWER_BOUND) / 3;
+    g_pxy_map = (g_pulse2 - PX_LOC_LOWER_BOUND) / 3;
+    
+    // out of bound -> don't draw anything
+    if(g_pxx_map > 31)  g_pxx_map = -1;
+    if(g_pxy_map > 31)  g_pxy_map = -1;
+    
+    // currently, g_pxx_map can be (-inf, 31]
+    g_pxx = g_pxx_map << 2;   // * 4
+    g_pxy = g_pxy_map << 2;   // * 4
+    // now, g_pxx can be (-inf, 124]
+}
+
+//*****************************************************************************
+//
+//! Draw a pixel on OLED of specified size
+//!
+//! \param  px_size : pixel size
+//!
+//! \return None
+//
+//*****************************************************************************
+void DrawSizedPixel(unsigned char px_size)
+{
+    g_OLEDred = g_red >> 3;         // 5-bit
+    g_OLEDgreen = g_green >> 2;     // 6-bit
+    g_OLEDblue = g_blue >> 3;       // 5-bit
+    
+    // OLED color format: 16-bit RGB565
+    unsigned int OLEDcolor;
+    OLEDcolor = (g_OLEDred << 11) | (g_OLEDgreen << 5) | (g_OLEDblue); 
+    
+    int i, j;
+    for(i = g_pxx; i < g_pxx + px_size; i++)
+        for(j = g_pxy; j < g_pxy + px_size; j++)
+            drawPixel(i, j, OLEDcolor);
+}
+
+//*****************************************************************************
+//
+//! Save the color to g_imageRGB
+//!
+//! \param  None
+//!
+//! \return None
+//
+//*****************************************************************************
+void SaveToRGBArr()
+{
+    // if out of bound (negative px location), don't save
+    if(g_pxx_map < 0 || g_pxy_map < 0 || g_pxx_map > 31 || g_pxy_map > 31)
+        return;
+    
+    int idx = g_pxx_map + g_pxy_map * 32;
+    
+    g_imageRGB[idx] = (g_red << 16) | (g_green << 8) | (g_blue);
+}
+
+//*****************************************************************************
+//
+//! Start sketching on the OLED display
+//!
+//! \param  None
+//!
+//! \return None
+//
+//*****************************************************************************
+void StartSketching()
+{
+    // Initial value for RGB color (white)
+    g_red = 255;    g_green = 255;    g_blue = 255;
+    
+    // Allocate imageRGB array and zero-initialize it
+	g_imageRGB = (unsigned long*) calloc(1024, sizeof(unsigned long));
+
+    int i;
+	for(i = 0; i < 1024; i++)
+    {
+        g_pxx_map = i % 32;
+        g_pxy_map = i / 32;
+        ChangeRGBColor((int)i / 128 + 1);
+        SaveToRGBArr();
+        //g_imageRGB[i] = 0x0039C5BB;
+    }
+	
+	long lRetVal = GenerateImage(g_imageRGB);
+	
+	while(lRetVal);
+	
+    /*
+    // infinite loop
+    while(1)
+    {
+        // Collect data from the two ultrasonic sensors
+        CollectUSData();
+        
+        // Convert the sensor data to pixel location
+        // ConvertToPixelLoc();
+        
+        // Draw the pixel on OLED
+        DrawSizedPixel(4);
+        
+        // Save the pixel to g_imageRGB array
+        SaveToRGBArr();
+        
+        // Listen to IR sensor
+        GetIRInput();
+    }
+    */
+}
+
+
+//*****************************************************************************
+//
+//! Main function
+//!
+//! \param  None
+//!
+//! \return None
+//! 
+//*****************************************************************************
+void main()
+{
+    // Initialize board configurations
+    BoardInit();
+    // Configure the pinmux settings for the peripherals exercised
+    PinMuxConfig();
+    // Initialising the Terminal
+    InitTerm();
+    // Clearing the Terminal
+    ClearTerm();
+    // Enable the SPI module clock
+    MAP_PRCMPeripheralClkEnable(PRCM_GSPI,PRCM_RUN_MODE_CLK);
+    // Reset the peripheral
+    MAP_PRCMPeripheralReset(PRCM_GSPI);
+    // Reset SPI
+    MAP_SPIReset(GSPI_BASE);
+    // Configure SPI interface
+    MAP_SPIConfigSetExpClk(GSPI_BASE,MAP_PRCMPeripheralClockGet(PRCM_GSPI),
+                     SPI_IF_BIT_RATE,SPI_MODE_MASTER,SPI_SUB_MODE_0,
+                     (SPI_SW_CTRL_CS |
+                     SPI_4PIN_MODE |
+                     SPI_TURBO_OFF |
+                     SPI_CS_ACTIVEHIGH |
+                     SPI_WL_8));
+    // Enable SPI for communication
+    MAP_SPIEnable(GSPI_BASE);
+    // Initialize Adafruit
+    Adafruit_Init();
+
+	// GPIO Interrupt Initialization
+    // IR Sensor
+    MAP_GPIOIntRegister(GPIOA1_BASE, IRIntHandler);
+    MAP_GPIOIntTypeSet(GPIOA1_BASE, 0x20, GPIO_FALLING_EDGE);
+	unsigned long ulStatus = MAP_GPIOIntStatus(GPIOA1_BASE, false);
+    MAP_GPIOIntClear(GPIOA1_BASE, ulStatus);            // clear interrupts on GPIOA1
+    MAP_GPIOIntEnable(GPIOA1_BASE, 0x1);                // enable the IR sensor interrupt
+	
+    // U/S Echo1 OUT
+    MAP_GPIOIntEnable(GPIOA2_BASE,PIN_08);
+    MAP_GPIOIntTypeSet(GPIOA2_BASE, PIN_08,GPIO_BOTH_EDGES);
+    MAP_GPIOIntRegister(GPIOA2_BASE,US1IntHandler);
+    
+    // U/S Echo2 OUT
+    MAP_GPIOIntEnable(GPIOA0_BASE,PIN_50);
+    MAP_GPIOIntTypeSet(GPIOA0_BASE, PIN_50,GPIO_BOTH_EDGES);
+    MAP_GPIOIntRegister(GPIOA0_BASE,US2IntHandler);
+    
+    
+	// Timer Initialization
+    // Base address for first timer (sensing IR signal)
+    g_ulBase = TIMERA0_BASE;
+    // Configuring the timers
+    // TimerA0 (IR sensor)
+    Timer_IF_Init(PRCM_TIMERA0, g_ulBase, TIMER_CFG_PERIODIC, TIMER_A, 0);
+    Timer_IF_IntSetup(g_ulBase, TIMER_A, TimerIntHandler);
+    
+    // TimerA2 (U/S Sensor #2)
+    Timer_IF_Init(PRCM_TIMERA3, TIMERA3_BASE, TIMER_CFG_PERIODIC_UP, TIMER_A, 0);
+    //MAP_TimerConfigure(TIMERA3_BASE, TIMER_CFG_PERIODIC_UP);
+    //MAP_TimerIntRegister(TIMERA3_BASE,TIMER_A,US1IntHandler);
+    MAP_TimerEnable(TIMERA3_BASE,TIMER_A);
+
+	// TimerA1 (U/S Sensor #1)
+    Timer_IF_Init(PRCM_TIMERA1, TIMERA1_BASE, TIMER_CFG_PERIODIC_UP, TIMER_A, 0);
+    //MAP_TimerConfigure(TIMERA1_BASE, TIMER_CFG_PERIODIC_UP);
+    //MAP_TimerIntRegister(TIMERA1_BASE,TIMER_A,US2IntHandler);
+    MAP_TimerEnable(TIMERA1_BASE,TIMER_A);
+    
+	// Print on OLED
+    fillScreen(BLACK);          // clear the display
+	
+	long lRetVal;
+	unsigned char policyVal;
+	//
+    // Initializing the CC3200 networking layers
+    //
+    lRetVal = sl_Start(NULL, NULL, NULL);
+    if(lRetVal < 0)
+    {
+        GPIO_IF_LedOn(MCU_RED_LED_GPIO);
+         LOOP_FOREVER();
+    }
+	//
+    // reset all network policies
+    //
+    lRetVal = sl_WlanPolicySet(  SL_POLICY_CONNECTION,
+                    SL_CONNECTION_POLICY(0,0,0,0,0),
+                    &policyVal,
+                    1 /*PolicyValLen*/);
+	
+	
+    //UART_PRINT("Initialization Complete...Starting Program...\n\r\n\r");
+
+    StartSketching();
+}
