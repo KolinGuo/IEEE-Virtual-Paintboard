@@ -3,7 +3,7 @@
 //
 // configure the device pins for different signals
 //
-// Copyright (c) 2016, Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (c) 2016, Texas Instruments Incorporated - http://www.ti.com/ 
 // All rights reserved.
 // 
 //  Redistribution and use in source and binary forms, with or without 
@@ -36,12 +36,12 @@
 //
 //*****************************************************************************
 
-// This file was automatically generated on 4/15/2018 at 5:48:27 PM
-// by TI PinMux version 4.0.1512
+// This file was automatically generated on 4/3/2019 at 3:03:15 PM
+// by TI PinMux version 4.0.1512 
 //
 //*****************************************************************************
 
-#include "pin_mux_config.h"
+#include "pin_mux_config.h" 
 #include "hw_types.h"
 #include "hw_memmap.h"
 #include "hw_gpio.h"
@@ -52,14 +52,19 @@
 //*****************************************************************************
 void PinMuxConfig(void)
 {
+
+
     //
     // Set unused pins to PIN_MODE_0 with the exception of JTAG pins 16,17,19,20
     //
     PinModeSet(PIN_03, PIN_MODE_0);
     PinModeSet(PIN_04, PIN_MODE_0);
+    PinModeSet(PIN_05, PIN_MODE_0);
     PinModeSet(PIN_06, PIN_MODE_0);
+    PinModeSet(PIN_07, PIN_MODE_0);
     PinModeSet(PIN_08, PIN_MODE_0);
     PinModeSet(PIN_15, PIN_MODE_0);
+    PinModeSet(PIN_18, PIN_MODE_0);
     PinModeSet(PIN_21, PIN_MODE_0);
     PinModeSet(PIN_45, PIN_MODE_0);
     PinModeSet(PIN_50, PIN_MODE_0);
@@ -68,24 +73,16 @@ void PinMuxConfig(void)
     PinModeSet(PIN_58, PIN_MODE_0);
     PinModeSet(PIN_59, PIN_MODE_0);
     PinModeSet(PIN_60, PIN_MODE_0);
+    PinModeSet(PIN_61, PIN_MODE_0);
+    PinModeSet(PIN_62, PIN_MODE_0);
     PinModeSet(PIN_63, PIN_MODE_0);
     PinModeSet(PIN_64, PIN_MODE_0);
-
+    
     //
     // Enable Peripheral Clocks 
     //
     PRCMPeripheralClkEnable(PRCM_I2CA0, PRCM_RUN_MODE_CLK);
     PRCMPeripheralClkEnable(PRCM_UARTA0, PRCM_RUN_MODE_CLK);
-
-    //
-    // Configure PIN_55 for UART0 UART0_TX
-    //
-    PinTypeUART(PIN_55, PIN_MODE_3);
-
-    //
-    // Configure PIN_57 for UART0 UART0_RX
-    //
-    PinTypeUART(PIN_57, PIN_MODE_3);
 
     //
     // Configure PIN_01 for I2C0 I2C_SCL
@@ -96,4 +93,14 @@ void PinMuxConfig(void)
     // Configure PIN_02 for I2C0 I2C_SDA
     //
     PinTypeI2C(PIN_02, PIN_MODE_1);
+
+    //
+    // Configure PIN_55 for UART0 UART0_TX
+    //
+    PinTypeUART(PIN_55, PIN_MODE_3);
+
+    //
+    // Configure PIN_57 for UART0 UART0_RX
+    //
+    PinTypeUART(PIN_57, PIN_MODE_3);
 }

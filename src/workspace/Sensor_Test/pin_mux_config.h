@@ -3,7 +3,7 @@
 //
 // configure the device pins for different signals
 //
-// Copyright (c) 2016, Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (c) 2016, Texas Instruments Incorporated - http://www.ti.com/ 
 // All rights reserved.
 // 
 //  Redistribution and use in source and binary forms, with or without 
@@ -36,8 +36,8 @@
 //
 //*****************************************************************************
 
-// This file was automatically generated on 4/11/2018 at 5:48:43 PM
-// by TI PinMux version 4.0.1512
+// This file was automatically generated on 4/3/2019 at 3:03:20 PM
+// by TI PinMux version 4.0.1512 
 //
 //*****************************************************************************
 

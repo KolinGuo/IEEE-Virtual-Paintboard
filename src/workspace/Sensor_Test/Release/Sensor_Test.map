@@ -1,34 +1,34 @@
 ******************************************************************************
                   TI ARM Linker PC v18.12.1                    
 ******************************************************************************
->> Linked Wed Apr  3 14:58:16 2019
+>> Linked Wed Apr  3 15:49:51 2019
 
 OUTPUT FILE NAME:   <Sensor_Test.out>
-ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 20009291
+ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 20009541
 
 
 MEMORY CONFIGURATION
 
          name            origin    length      used     unused   attr    fill
 ----------------------  --------  ---------  --------  --------  ----  --------
-  SRAM_CODE             20004000   00013000  00005b74  0000d48c  RW X
-  SRAM_DATA             20017000   00019000  00001038  00017fc8  RW X
+  SRAM_CODE             20004000   00013000  00005e24  0000d1dc  RW X
+  SRAM_DATA             20017000   00019000  00001054  00017fac  RW X
 
 
 SEGMENT ALLOCATION MAP
 
 run origin  load origin   length   init length attrs members
 ----------  ----------- ---------- ----------- ----- -------
-20004000    20004000    00005b78   00005b78    r-x
+20004000    20004000    00005e28   00005e28    r-x
   20004000    20004000    00000400   00000400    r-- .intvecs
-  20004400    20004400    00005290   00005290    r-x .text
-  20009690    20009690    000004a8   000004a8    r-- .const
-  20009b38    20009b38    00000004   00000004    r-- .init_array
-  20009b40    20009b40    00000038   00000038    r-- .cinit
-20017000    20017000    00000838   00000000    rw-
+  20004400    20004400    00005540   00005540    r-x .text
+  20009940    20009940    000004a8   000004a8    r-- .const
+  20009de8    20009de8    00000004   00000004    r-- .init_array
+  20009df0    20009df0    00000038   00000038    r-- .cinit
+20017000    20017000    00000854   00000000    rw-
   20017000    20017000    00000800   00000000    rw- .sysmem
-  20017800    20017800    00000024   00000000    rw- .bss
-  20017824    20017824    00000014   00000000    rw- .data
+  20017800    20017800    00000040   00000000    rw- .bss
+  20017840    20017840    00000014   00000000    rw- .data
 2002f800    2002f800    00000800   00000000    rw-
   2002f800    2002f800    00000800   00000000    rw- .stack
 
@@ -42,187 +42,188 @@ section   page    origin      length       input sections
                   20004000    00000400     startup_ccs.obj (.intvecs)
 
 .init_array 
-*          0    20009b38    00000004     
-                  20009b38    00000004     main.obj (.init_array)
+*          0    20009de8    00000004     
+                  20009de8    00000004     main.obj (.init_array)
 
-.text      0    20004400    00005290     
+.text      0    20004400    00005540     
                   20004400    000017c4     vl53l1x_class.obj (.text)
                   20005bc4    00000a4e     rtsv7M4_T_le_eabi.lib : _printfi.c.obj (.text:__TI_printfi)
                   20006612    00000002                           : stdlib_typeinfo.cpp.obj (.text:_ZNSt9type_infoD1Ev)
-                  20006614    000004b8     SparkFun_VL53L1X.obj (.text)
-                  20006acc    000002f0     main.obj (.text)
-                  20006dbc    00000284     i2c_if.obj (.text)
-                  20007040    00000280     uart_if.obj (.text)
-                  200072c0    00000268     rtsv7M4_T_le_eabi.lib : _printfi.c.obj (.text:_pconv_a)
-                  20007528    000001cc                           : _printfi.c.obj (.text:_pconv_g)
-                  200076f4    000001b6                           : fd_add_t2.asm.obj (.text)
-                  200078aa    00000002                           : _lock.c.obj (.text:_nop)
-                  200078ac    00000178     driverlib.a : prcm.obj (.text:PRCMCC3200MCUInit)
-                  20007a24    0000013c     rtsv7M4_T_le_eabi.lib : _printfi.c.obj (.text:_pconv_e)
-                  20007b60    00000136                           : fd_div_t2.asm.obj (.text)
-                  20007c96    00000002                           : div0.asm.obj (.text)
-                  20007c98    00000120                           : _printfi.c.obj (.text:fcvt)
-                  20007db8    000000fc                           : fd_mul_t2.asm.obj (.text)
-                  20007eb4    000000fa                           : fs_add_t2.asm.obj (.text)
-                  20007fae    00000002     --HOLE-- [fill = 0]
-                  20007fb0    000000f4                           : memory.c.obj (.text:aligned_alloc)
-                  200080a4    000000e8                           : memory.c.obj (.text:free)
-                  2000818c    000000d8                           : memory.c.obj (.text:realloc)
-                  20008264    000000d0                           : s_scalbn.c.obj (.text:scalbn)
-                  20008334    000000b1                           : _printfi.c.obj (.text:_ltostr)
-                  200083e5    00000003     --HOLE-- [fill = 0]
-                  200083e8    000000a8     driverlib.a : interrupt.obj (.text:IntEnable)
-                  20008490    0000009c     rtsv7M4_T_le_eabi.lib : memcpy_t2.asm.obj (.text)
-                  2000852c    00000096                           : ull_div_t2.asm.obj (.text)
-                  200085c2    00000002     --HOLE-- [fill = 0]
-                  200085c4    00000094     driverlib.a : prcm.obj (.text:PRCMPeripheralClockGet)
-                  20008658    00000092     rtsv7M4_T_le_eabi.lib : fs_div_t2.asm.obj (.text)
-                  200086ea    00000002     --HOLE-- [fill = 0]
-                  200086ec    00000088     driverlib.a : pin.obj (.text:PinConfigSet)
-                  20008774    00000086     rtsv7M4_T_le_eabi.lib : fd_cmp_t2.asm.obj (.text:__aeabi_cdcmple)
-                  200087fa    00000086                           : fd_cmp_t2.asm.obj (.text:__aeabi_cdrcmple)
-                  20008880    00000084     driverlib.a : i2c.obj (.text:I2CMasterInitExpClk)
-                  20008904    0000007c     rtsv7M4_T_le_eabi.lib : memory.c.obj (.text:split)
-                  20008980    0000007a                           : fs_mul_t2.asm.obj (.text)
-                  200089fa    0000007a                           : memset_t2.asm.obj (.text)
-                  20008a74    00000076     driverlib.a : uart.obj (.text:UARTConfigSetExpClk)
-                  20008aea    0000006e     rtsv7M4_T_le_eabi.lib : _printfi.c.obj (.text:_mcpy)
-                  20008b58    0000006e                           : fd_tos_t2.asm.obj (.text)
-                  20008bc6    00000068                           : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
-                  20008c2e    00000002     --HOLE-- [fill = 0]
-                  20008c30    00000064     SparkFun_VL53L1X.obj (.text:_ZN7VL53L1XC1Ejmhmh)
-                  20008c94    00000060     rtsv7M4_T_le_eabi.lib : autoinit.c.obj (.text:__TI_auto_init_nobinit:__TI_auto_init_nobinit)
-                  20008cf4    0000005c                           : s_frexp.c.obj (.text:frexp)
-                  20008d50    00000058     driverlib.a : prcm.obj (.text:PRCMPeripheralReset)
-                  20008da8    00000056     rtsv7M4_T_le_eabi.lib : _printfi.c.obj (.text:_pconv_f)
-                  20008dfe    00000054                           : ltoa.c.obj (.text:ltoa)
-                  20008e52    00000052                           : _printfi.c.obj (.text:_ecpy)
-                  20008ea4    0000004c                           : atoi.c.obj (.text:atoi)
-                  20008ef0    00000048                           : fd_toi_t2.asm.obj (.text)
-                  20008f38    00000044                           : fd_tou_t2.asm.obj (.text)
-                  20008f7c    00000040     driverlib.a : pin.obj (.text:PinModeSet)
-                  20008fbc    00000040     rtsv7M4_T_le_eabi.lib : vsnprintf.c.obj (.text:vsnprintf)
-                  20008ffc    0000003e                           : _printfi.c.obj (.text:_fcpy)
-                  2000903a    00000002     --HOLE-- [fill = 0]
-                  2000903c    0000003c     driverlib.a : prcm.obj (.text:PRCMPeripheralClkEnable)
-                  20009078    00000038     rtsv7M4_T_le_eabi.lib : fs_tod_t2.asm.obj (.text)
-                  200090b0    00000038                           : fs_toi_t2.asm.obj (.text)
-                  200090e8    00000030     driverlib.a : uart.obj (.text:UARTDisable)
-                  20009118    00000030     rtsv7M4_T_le_eabi.lib : vsnprintf.c.obj (.text:_outs)
-                  20009148    0000002e                           : i_tofd_t2.asm.obj (.text)
-                  20009176    0000002c     driverlib.a : i2c.obj (.text:I2CMasterErr)
-                  200091a2    00000002     --HOLE-- [fill = 0]
-                  200091a4    0000002c                 : prcm.obj (.text:PRCMSysResetCauseGet)
-                  200091d0    00000028                 : prcm.obj (.text:PRCMPeripheralClkDisable)
-                  200091f8    00000028     SparkFun_VL53L1X.obj (.text:_ZN7VL53L1X9VL53L1_OnEv)
-                  20009220    00000028     rtsv7M4_T_le_eabi.lib : memory.c.obj (.text:free_list_insert)
-                  20009248    00000024     driverlib.a : uart.obj (.text:UARTEnable)
-                  2000926c    00000024     SparkFun_VL53L1X.obj (.text:_ZN7VL53L1X10VL53L1_OffEv)
-                  20009290    00000024     rtsv7M4_T_le_eabi.lib : boot_cortex_m.c.obj (.text:_c_int00_noargs:_c_int00_noargs)
-                  200092b4    00000024                           : memmov.c.obj (.text:memmove)
-                  200092d8    00000024                           : u_tofs_t2.asm.obj (.text)
-                  200092fc    00000022     driverlib.a : i2c.obj (.text:I2CMasterSlaveAddrSet)
-                  2000931e    00000022     SparkFun_VL53L1X.obj (.text:_ZN7VL53L1X11GetDistanceEPj)
-                  20009340    00000022     SparkFun_VL53L1X.obj (.text:_ZN7VL53L1X6ReadIDEv)
-                  20009362    00000022     rtsv7M4_T_le_eabi.lib : new.cpp.obj (.text:_Znwj)
-                  20009384    00000020     driverlib.a : gpio.obj (.text:GPIOPinWrite)
-                  200093a4    00000020     rtsv7M4_T_le_eabi.lib : u_tofd_t2.asm.obj (.text)
-                  200093c4    0000001e     driverlib.a : i2c.obj (.text:I2CMasterIntStatusEx)
-                  200093e2    0000001e                 : uart.obj (.text:UARTCharPut)
-                  20009400    0000001c                 : pin.obj (.text:PinTypeI2C)
-                  2000941c    0000001c                 : uart.obj (.text:UARTCharGetNonBlocking)
-                  20009438    0000001c     rtsv7M4_T_le_eabi.lib : memory.c.obj (.text:free_list_remove)
-                  20009454    0000001c                           : memccpy.c.obj (.text:memccpy)
-                  20009470    0000001a     driverlib.a : pin.obj (.text:PinTypeUART)
-                  2000948a    00000018                 : uart.obj (.text:UARTCharsAvail)
-                  200094a2    00000018     rtsv7M4_T_le_eabi.lib : vsnprintf.c.obj (.text:_outc)
-                  200094ba    00000016     driverlib.a : i2c.obj (.text:I2CMasterDataPut)
-                  200094d0    00000016                 : i2c.obj (.text:I2CMasterEnable)
-                  200094e6    00000016                 : prcm.obj (.text:PRCMHIBRegRead)
-                  200094fc    00000016                 : prcm.obj (.text:PRCMHIBRegWrite)
-                  20009512    00000016     rtsv7M4_T_le_eabi.lib : strchr.c.obj (.text:strchr)
-                  20009528    00000014     driverlib.a : cpu.obj (.text:CPUcpsie)
-                  2000953c    00000014                 : interrupt.obj (.text:IntVTableBaseSet)
-                  20009550    00000014     SparkFun_VL53L1X.obj (.text:_ZN7VL53L1XD0Ev)
-                  20009564    00000014     rtsv7M4_T_le_eabi.lib : strlen.c.obj (.text:strlen)
-                  20009578    00000012     driverlib.a : i2c.obj (.text:I2CMasterControl)
-                  2000958a    00000012                 : i2c.obj (.text:I2CMasterIntClearEx)
-                  2000959c    00000012                 : i2c.obj (.text:I2CMasterTimeoutSet)
-                  200095ae    00000012     rtsv7M4_T_le_eabi.lib : copy_zero_init.c.obj (.text:decompress:ZI:__TI_zero_init_nomemset:__TI_zero_init_nomemset)
-                  200095c0    00000012                           : wcslen.c.obj (.text:wcslen)
-                  200095d2    0000000e     driverlib.a : i2c.obj (.text:I2CMasterDataGet)
-                  200095e0    0000000e     rtsv7M4_T_le_eabi.lib : typeinfo.c.obj (.text:_ZN10__cxxabiv117__class_type_infoD0Ev)
-                  200095ee    0000000e                           : typeinfo.c.obj (.text:_ZN10__cxxabiv120__si_class_type_infoD0Ev)
-                  200095fc    0000000e                           : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
-                  2000960a    0000000e     startup_ccs.obj (.text)
-                  20009618    0000000c     SparkFun_VL53L1X.obj (.text:_ZN7VL53L1X4InitEv)
-                  20009624    0000000c     SparkFun_VL53L1X.obj (.text:_ZN7VL53L1XD1Ev)
-                  20009630    0000000c     rtsv7M4_T_le_eabi.lib : new.cpp.obj (.text:_ZSt15get_new_handlerv)
-                  2000963c    0000000c                           : s_copysign.c.obj (.text:copysign)
-                  20009648    0000000a     driverlib.a : interrupt.obj (.text:IntMasterEnable)
-                  20009652    00000008     rtsv7M4_T_le_eabi.lib : new.cpp.obj (.text:_ZdlPv)
-                  2000965a    00000002     --HOLE-- [fill = 0]
-                  2000965c    00000008                           : errno.c.obj (.text:__aeabi_errno_addr)
-                  20009664    00000008                           : memory.c.obj (.text:malloc)
-                  2000966c    00000006     driverlib.a : utils.obj (.text:UtilsDelay)
-                  20009672    00000006     rtsv7M4_T_le_eabi.lib : pure_virt.c.obj (.text:__cxa_pure_virtual)
-                  20009678    00000004                           : typeinfo.c.obj (.text:_ZN10__cxxabiv117__class_type_infoD1Ev)
-                  2000967c    00000004                           : typeinfo.c.obj (.text:_ZN10__cxxabiv120__si_class_type_infoD1Ev)
-                  20009680    00000004                           : new.cpp.obj (.text:_ZdlPvj)
-                  20009684    00000004                           : error.c.obj (.text:__abort_execution)
-                  20009688    00000004                           : pre_init.c.obj (.text:_system_pre_init)
-                  2000968c    00000004                           : exit.c.obj (.text:abort:abort)
+                  20006614    000005a0     main.obj (.text)
+                  20006bb4    000004b8     SparkFun_VL53L1X.obj (.text)
+                  2000706c    00000284     i2c_if.obj (.text)
+                  200072f0    00000280     uart_if.obj (.text)
+                  20007570    00000268     rtsv7M4_T_le_eabi.lib : _printfi.c.obj (.text:_pconv_a)
+                  200077d8    000001cc                           : _printfi.c.obj (.text:_pconv_g)
+                  200079a4    000001b6                           : fd_add_t2.asm.obj (.text)
+                  20007b5a    00000002                           : _lock.c.obj (.text:_nop)
+                  20007b5c    00000178     driverlib.a : prcm.obj (.text:PRCMCC3200MCUInit)
+                  20007cd4    0000013c     rtsv7M4_T_le_eabi.lib : _printfi.c.obj (.text:_pconv_e)
+                  20007e10    00000136                           : fd_div_t2.asm.obj (.text)
+                  20007f46    00000002                           : div0.asm.obj (.text)
+                  20007f48    00000120                           : _printfi.c.obj (.text:fcvt)
+                  20008068    000000fc                           : fd_mul_t2.asm.obj (.text)
+                  20008164    000000fa                           : fs_add_t2.asm.obj (.text)
+                  2000825e    00000002     --HOLE-- [fill = 0]
+                  20008260    000000f4                           : memory.c.obj (.text:aligned_alloc)
+                  20008354    000000e8                           : memory.c.obj (.text:free)
+                  2000843c    000000d8                           : memory.c.obj (.text:realloc)
+                  20008514    000000d0                           : s_scalbn.c.obj (.text:scalbn)
+                  200085e4    000000b1                           : _printfi.c.obj (.text:_ltostr)
+                  20008695    00000003     --HOLE-- [fill = 0]
+                  20008698    000000a8     driverlib.a : interrupt.obj (.text:IntEnable)
+                  20008740    0000009c     rtsv7M4_T_le_eabi.lib : memcpy_t2.asm.obj (.text)
+                  200087dc    00000096                           : ull_div_t2.asm.obj (.text)
+                  20008872    00000002     --HOLE-- [fill = 0]
+                  20008874    00000094     driverlib.a : prcm.obj (.text:PRCMPeripheralClockGet)
+                  20008908    00000092     rtsv7M4_T_le_eabi.lib : fs_div_t2.asm.obj (.text)
+                  2000899a    00000002     --HOLE-- [fill = 0]
+                  2000899c    00000088     driverlib.a : pin.obj (.text:PinConfigSet)
+                  20008a24    00000086     rtsv7M4_T_le_eabi.lib : fd_cmp_t2.asm.obj (.text:__aeabi_cdcmple)
+                  20008aaa    00000086                           : fd_cmp_t2.asm.obj (.text:__aeabi_cdrcmple)
+                  20008b30    00000084     driverlib.a : i2c.obj (.text:I2CMasterInitExpClk)
+                  20008bb4    0000007c     rtsv7M4_T_le_eabi.lib : memory.c.obj (.text:split)
+                  20008c30    0000007a                           : fs_mul_t2.asm.obj (.text)
+                  20008caa    0000007a                           : memset_t2.asm.obj (.text)
+                  20008d24    00000076     driverlib.a : uart.obj (.text:UARTConfigSetExpClk)
+                  20008d9a    0000006e     rtsv7M4_T_le_eabi.lib : _printfi.c.obj (.text:_mcpy)
+                  20008e08    0000006e                           : fd_tos_t2.asm.obj (.text)
+                  20008e76    00000068                           : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
+                  20008ede    00000002     --HOLE-- [fill = 0]
+                  20008ee0    00000064     SparkFun_VL53L1X.obj (.text:_ZN7VL53L1XC1Ejmhmh)
+                  20008f44    00000060     rtsv7M4_T_le_eabi.lib : autoinit.c.obj (.text:__TI_auto_init_nobinit:__TI_auto_init_nobinit)
+                  20008fa4    0000005c                           : s_frexp.c.obj (.text:frexp)
+                  20009000    00000058     driverlib.a : prcm.obj (.text:PRCMPeripheralReset)
+                  20009058    00000056     rtsv7M4_T_le_eabi.lib : _printfi.c.obj (.text:_pconv_f)
+                  200090ae    00000054                           : ltoa.c.obj (.text:ltoa)
+                  20009102    00000052                           : _printfi.c.obj (.text:_ecpy)
+                  20009154    0000004c                           : atoi.c.obj (.text:atoi)
+                  200091a0    00000048                           : fd_toi_t2.asm.obj (.text)
+                  200091e8    00000044                           : fd_tou_t2.asm.obj (.text)
+                  2000922c    00000040     driverlib.a : pin.obj (.text:PinModeSet)
+                  2000926c    00000040     rtsv7M4_T_le_eabi.lib : vsnprintf.c.obj (.text:vsnprintf)
+                  200092ac    0000003e                           : _printfi.c.obj (.text:_fcpy)
+                  200092ea    00000002     --HOLE-- [fill = 0]
+                  200092ec    0000003c     driverlib.a : prcm.obj (.text:PRCMPeripheralClkEnable)
+                  20009328    00000038     rtsv7M4_T_le_eabi.lib : fs_tod_t2.asm.obj (.text)
+                  20009360    00000038                           : fs_toi_t2.asm.obj (.text)
+                  20009398    00000030     driverlib.a : uart.obj (.text:UARTDisable)
+                  200093c8    00000030     rtsv7M4_T_le_eabi.lib : vsnprintf.c.obj (.text:_outs)
+                  200093f8    0000002e                           : i_tofd_t2.asm.obj (.text)
+                  20009426    0000002c     driverlib.a : i2c.obj (.text:I2CMasterErr)
+                  20009452    00000002     --HOLE-- [fill = 0]
+                  20009454    0000002c                 : prcm.obj (.text:PRCMSysResetCauseGet)
+                  20009480    00000028                 : prcm.obj (.text:PRCMPeripheralClkDisable)
+                  200094a8    00000028     SparkFun_VL53L1X.obj (.text:_ZN7VL53L1X9VL53L1_OnEv)
+                  200094d0    00000028     rtsv7M4_T_le_eabi.lib : memory.c.obj (.text:free_list_insert)
+                  200094f8    00000024     driverlib.a : uart.obj (.text:UARTEnable)
+                  2000951c    00000024     SparkFun_VL53L1X.obj (.text:_ZN7VL53L1X10VL53L1_OffEv)
+                  20009540    00000024     rtsv7M4_T_le_eabi.lib : boot_cortex_m.c.obj (.text:_c_int00_noargs:_c_int00_noargs)
+                  20009564    00000024                           : memmov.c.obj (.text:memmove)
+                  20009588    00000024                           : u_tofs_t2.asm.obj (.text)
+                  200095ac    00000022     driverlib.a : i2c.obj (.text:I2CMasterSlaveAddrSet)
+                  200095ce    00000022     SparkFun_VL53L1X.obj (.text:_ZN7VL53L1X11GetDistanceEPj)
+                  200095f0    00000022     SparkFun_VL53L1X.obj (.text:_ZN7VL53L1X6ReadIDEv)
+                  20009612    00000022     rtsv7M4_T_le_eabi.lib : new.cpp.obj (.text:_Znwj)
+                  20009634    00000020     driverlib.a : gpio.obj (.text:GPIOPinWrite)
+                  20009654    00000020     rtsv7M4_T_le_eabi.lib : u_tofd_t2.asm.obj (.text)
+                  20009674    0000001e     driverlib.a : i2c.obj (.text:I2CMasterIntStatusEx)
+                  20009692    0000001e                 : uart.obj (.text:UARTCharPut)
+                  200096b0    0000001c                 : pin.obj (.text:PinTypeI2C)
+                  200096cc    0000001c                 : uart.obj (.text:UARTCharGetNonBlocking)
+                  200096e8    0000001c     rtsv7M4_T_le_eabi.lib : memory.c.obj (.text:free_list_remove)
+                  20009704    0000001c                           : memccpy.c.obj (.text:memccpy)
+                  20009720    0000001a     driverlib.a : pin.obj (.text:PinTypeUART)
+                  2000973a    00000018                 : uart.obj (.text:UARTCharsAvail)
+                  20009752    00000018     rtsv7M4_T_le_eabi.lib : vsnprintf.c.obj (.text:_outc)
+                  2000976a    00000016     driverlib.a : i2c.obj (.text:I2CMasterDataPut)
+                  20009780    00000016                 : i2c.obj (.text:I2CMasterEnable)
+                  20009796    00000016                 : prcm.obj (.text:PRCMHIBRegRead)
+                  200097ac    00000016                 : prcm.obj (.text:PRCMHIBRegWrite)
+                  200097c2    00000016     rtsv7M4_T_le_eabi.lib : strchr.c.obj (.text:strchr)
+                  200097d8    00000014     driverlib.a : cpu.obj (.text:CPUcpsie)
+                  200097ec    00000014                 : interrupt.obj (.text:IntVTableBaseSet)
+                  20009800    00000014     SparkFun_VL53L1X.obj (.text:_ZN7VL53L1XD0Ev)
+                  20009814    00000014     rtsv7M4_T_le_eabi.lib : strlen.c.obj (.text:strlen)
+                  20009828    00000012     driverlib.a : i2c.obj (.text:I2CMasterControl)
+                  2000983a    00000012                 : i2c.obj (.text:I2CMasterIntClearEx)
+                  2000984c    00000012                 : i2c.obj (.text:I2CMasterTimeoutSet)
+                  2000985e    00000012     rtsv7M4_T_le_eabi.lib : copy_zero_init.c.obj (.text:decompress:ZI:__TI_zero_init_nomemset:__TI_zero_init_nomemset)
+                  20009870    00000012                           : wcslen.c.obj (.text:wcslen)
+                  20009882    0000000e     driverlib.a : i2c.obj (.text:I2CMasterDataGet)
+                  20009890    0000000e     rtsv7M4_T_le_eabi.lib : typeinfo.c.obj (.text:_ZN10__cxxabiv117__class_type_infoD0Ev)
+                  2000989e    0000000e                           : typeinfo.c.obj (.text:_ZN10__cxxabiv120__si_class_type_infoD0Ev)
+                  200098ac    0000000e                           : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
+                  200098ba    0000000e     startup_ccs.obj (.text)
+                  200098c8    0000000c     SparkFun_VL53L1X.obj (.text:_ZN7VL53L1X4InitEv)
+                  200098d4    0000000c     SparkFun_VL53L1X.obj (.text:_ZN7VL53L1XD1Ev)
+                  200098e0    0000000c     rtsv7M4_T_le_eabi.lib : new.cpp.obj (.text:_ZSt15get_new_handlerv)
+                  200098ec    0000000c                           : s_copysign.c.obj (.text:copysign)
+                  200098f8    0000000a     driverlib.a : interrupt.obj (.text:IntMasterEnable)
+                  20009902    00000008     rtsv7M4_T_le_eabi.lib : new.cpp.obj (.text:_ZdlPv)
+                  2000990a    00000002     --HOLE-- [fill = 0]
+                  2000990c    00000008                           : errno.c.obj (.text:__aeabi_errno_addr)
+                  20009914    00000008                           : memory.c.obj (.text:malloc)
+                  2000991c    00000006     driverlib.a : utils.obj (.text:UtilsDelay)
+                  20009922    00000006     rtsv7M4_T_le_eabi.lib : pure_virt.c.obj (.text:__cxa_pure_virtual)
+                  20009928    00000004                           : typeinfo.c.obj (.text:_ZN10__cxxabiv117__class_type_infoD1Ev)
+                  2000992c    00000004                           : typeinfo.c.obj (.text:_ZN10__cxxabiv120__si_class_type_infoD1Ev)
+                  20009930    00000004                           : new.cpp.obj (.text:_ZdlPvj)
+                  20009934    00000004                           : error.c.obj (.text:__abort_execution)
+                  20009938    00000004                           : pre_init.c.obj (.text:_system_pre_init)
+                  2000993c    00000004                           : exit.c.obj (.text:abort:abort)
 
-.const     0    20009690    000004a8     
-                  20009690    00000101     rtsv7M4_T_le_eabi.lib : ctype.c.obj (.const:.string:_ctypes_)
-                  20009791    00000003     --HOLE-- [fill = 0]
-                  20009794    00000100     driverlib.a : pin.obj (.const:g_ulPinToPadMap)
-                  20009894    000000a8                 : prcm.obj (.const:PRCM_PeriphRegsList)
-                  2000993c    00000080                 : interrupt.obj (.const)
-                  200099bc    0000005b     vl53l1x_class.obj (.const:.string:VL51L1X_DEFAULT_CONFIGURATION)
-                  20009a17    00000025     rtsv7M4_T_le_eabi.lib : typeinfo.c.obj (.const:.typeinfo:_ZTSN10__cxxabiv120__si_class_type_infoE)
-                  20009a3c    00000024     SparkFun_VL53L1X.obj (.const:_ZTV7VL53L1X)
-                  20009a60    00000022     rtsv7M4_T_le_eabi.lib : typeinfo.c.obj (.const:.typeinfo:_ZTSN10__cxxabiv117__class_type_infoE)
-                  20009a82    00000002     --HOLE-- [fill = 0]
-                  20009a84    00000014     SparkFun_VL53L1X.obj (.const:_ZTV11RangeSensor)
-                  20009a98    00000012     SparkFun_VL53L1X.obj (.const:.typeinfo:_ZTS15ComponentObject)
-                  20009aaa    00000002     --HOLE-- [fill = 0]
-                  20009aac    00000010     rtsv7M4_T_le_eabi.lib : typeinfo.c.obj (.const:_ZTVN10__cxxabiv117__class_type_infoE)
-                  20009abc    00000010                           : typeinfo.c.obj (.const:_ZTVN10__cxxabiv120__si_class_type_infoE)
-                  20009acc    0000000e     SparkFun_VL53L1X.obj (.const:.typeinfo:_ZTS11RangeSensor)
-                  20009ada    0000000d     rtsv7M4_T_le_eabi.lib : stdlib_typeinfo.cpp.obj (.const:.typeinfo:_ZTSSt9type_info)
-                  20009ae7    00000001     --HOLE-- [fill = 0]
-                  20009ae8    0000000c     SparkFun_VL53L1X.obj (.const:.typeinfo:_ZTI11RangeSensor)
-                  20009af4    0000000c     SparkFun_VL53L1X.obj (.const:.typeinfo:_ZTI7VL53L1X)
-                  20009b00    0000000c     rtsv7M4_T_le_eabi.lib : typeinfo.c.obj (.const:.typeinfo:_ZTIN10__cxxabiv117__class_type_infoE)
-                  20009b0c    0000000c                           : typeinfo.c.obj (.const:.typeinfo:_ZTIN10__cxxabiv120__si_class_type_infoE)
-                  20009b18    00000009     SparkFun_VL53L1X.obj (.const:.typeinfo:_ZTS7VL53L1X)
-                  20009b21    00000003     --HOLE-- [fill = 0]
-                  20009b24    00000008     SparkFun_VL53L1X.obj (.const:.typeinfo:_ZTI15ComponentObject)
-                  20009b2c    00000008     rtsv7M4_T_le_eabi.lib : stdlib_typeinfo.cpp.obj (.const:.typeinfo:_ZTISt9type_info)
-                  20009b34    00000004     SparkFun_VL53L1X.obj (.const:$P$T0$1)
+.const     0    20009940    000004a8     
+                  20009940    00000101     rtsv7M4_T_le_eabi.lib : ctype.c.obj (.const:.string:_ctypes_)
+                  20009a41    00000003     --HOLE-- [fill = 0]
+                  20009a44    00000100     driverlib.a : pin.obj (.const:g_ulPinToPadMap)
+                  20009b44    000000a8                 : prcm.obj (.const:PRCM_PeriphRegsList)
+                  20009bec    00000080                 : interrupt.obj (.const)
+                  20009c6c    0000005b     vl53l1x_class.obj (.const:.string:VL51L1X_DEFAULT_CONFIGURATION)
+                  20009cc7    00000025     rtsv7M4_T_le_eabi.lib : typeinfo.c.obj (.const:.typeinfo:_ZTSN10__cxxabiv120__si_class_type_infoE)
+                  20009cec    00000024     SparkFun_VL53L1X.obj (.const:_ZTV7VL53L1X)
+                  20009d10    00000022     rtsv7M4_T_le_eabi.lib : typeinfo.c.obj (.const:.typeinfo:_ZTSN10__cxxabiv117__class_type_infoE)
+                  20009d32    00000002     --HOLE-- [fill = 0]
+                  20009d34    00000014     SparkFun_VL53L1X.obj (.const:_ZTV11RangeSensor)
+                  20009d48    00000012     SparkFun_VL53L1X.obj (.const:.typeinfo:_ZTS15ComponentObject)
+                  20009d5a    00000002     --HOLE-- [fill = 0]
+                  20009d5c    00000010     rtsv7M4_T_le_eabi.lib : typeinfo.c.obj (.const:_ZTVN10__cxxabiv117__class_type_infoE)
+                  20009d6c    00000010                           : typeinfo.c.obj (.const:_ZTVN10__cxxabiv120__si_class_type_infoE)
+                  20009d7c    0000000e     SparkFun_VL53L1X.obj (.const:.typeinfo:_ZTS11RangeSensor)
+                  20009d8a    0000000d     rtsv7M4_T_le_eabi.lib : stdlib_typeinfo.cpp.obj (.const:.typeinfo:_ZTSSt9type_info)
+                  20009d97    00000001     --HOLE-- [fill = 0]
+                  20009d98    0000000c     SparkFun_VL53L1X.obj (.const:.typeinfo:_ZTI11RangeSensor)
+                  20009da4    0000000c     SparkFun_VL53L1X.obj (.const:.typeinfo:_ZTI7VL53L1X)
+                  20009db0    0000000c     rtsv7M4_T_le_eabi.lib : typeinfo.c.obj (.const:.typeinfo:_ZTIN10__cxxabiv117__class_type_infoE)
+                  20009dbc    0000000c                           : typeinfo.c.obj (.const:.typeinfo:_ZTIN10__cxxabiv120__si_class_type_infoE)
+                  20009dc8    00000009     SparkFun_VL53L1X.obj (.const:.typeinfo:_ZTS7VL53L1X)
+                  20009dd1    00000003     --HOLE-- [fill = 0]
+                  20009dd4    00000008     SparkFun_VL53L1X.obj (.const:.typeinfo:_ZTI15ComponentObject)
+                  20009ddc    00000008     rtsv7M4_T_le_eabi.lib : stdlib_typeinfo.cpp.obj (.const:.typeinfo:_ZTISt9type_info)
+                  20009de4    00000004     SparkFun_VL53L1X.obj (.const:$P$T0$1)
 
-.cinit     0    20009b40    00000038     
-                  20009b40    0000000d     (.cinit..data.load) [load image, compression = lzss]
-                  20009b4d    00000003     --HOLE-- [fill = 0]
-                  20009b50    0000000c     (__TI_handler_table)
-                  20009b5c    00000004     --HOLE-- [fill = 0]
-                  20009b60    00000008     (.cinit..bss.load) [load image, compression = zero_init]
-                  20009b68    00000010     (__TI_cinit_table)
+.cinit     0    20009df0    00000038     
+                  20009df0    0000000d     (.cinit..data.load) [load image, compression = lzss]
+                  20009dfd    00000003     --HOLE-- [fill = 0]
+                  20009e00    0000000c     (__TI_handler_table)
+                  20009e0c    00000004     --HOLE-- [fill = 0]
+                  20009e10    00000008     (.cinit..bss.load) [load image, compression = zero_init]
+                  20009e18    00000010     (__TI_cinit_table)
 
 .sysmem    0    20017000    00000800     UNINITIALIZED
                   20017000    00000010     rtsv7M4_T_le_eabi.lib : memory.c.obj (.sysmem)
                   20017010    000007f0     --HOLE--
 
-.bss       0    20017800    00000024     UNINITIALIZED
-                  20017800    0000001c     main.obj (.bss:distanceSensor)
-                  2001781c    00000004     rtsv7M4_T_le_eabi.lib : new.cpp.obj (.bss)
-                  20017820    00000004     uart_if.obj (.bss)
+.bss       0    20017800    00000040     UNINITIALIZED
+                  20017800    0000001c     main.obj (.bss:distanceSensor12)
+                  2001781c    0000001c     main.obj (.bss:distanceSensor34)
+                  20017838    00000004     rtsv7M4_T_le_eabi.lib : new.cpp.obj (.bss)
+                  2001783c    00000004     uart_if.obj (.bss)
 
-.data      0    20017824    00000014     UNINITIALIZED
-                  20017824    00000008     rtsv7M4_T_le_eabi.lib : _lock.c.obj (.data:$O1$$)
-                  2001782c    00000008                           : memory.c.obj (.data:$O1$$)
-                  20017834    00000004                           : errno.c.obj (.data)
+.data      0    20017840    00000014     UNINITIALIZED
+                  20017840    00000008     rtsv7M4_T_le_eabi.lib : _lock.c.obj (.data:$O1$$)
+                  20017848    00000008                           : memory.c.obj (.data:$O1$$)
+                  20017850    00000004                           : errno.c.obj (.data)
 
 .stack     0    2002f800    00000800     UNINITIALIZED
                   2002f800    00000004     rtsv7M4_T_le_eabi.lib : boot_cortex_m.c.obj (.stack)
@@ -235,12 +236,12 @@ MODULE SUMMARY
     .\
        vl53l1x_class.obj            6084    91        0      
        SparkFun_VL53L1X.obj         1496    133       0      
+       main.obj                     1440    4         56     
        startup_ccs.obj              14      1024      0      
-       main.obj                     752     4         28     
        i2c_if.obj                   644     0         0      
        uart_if.obj                  640     0         4      
     +--+----------------------------+-------+---------+---------+
-       Total:                       9630    1252      32     
+       Total:                       10318   1252      60     
                                                              
     D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a
        prcm.obj                     800     168       0      
@@ -309,19 +310,19 @@ MODULE SUMMARY
        Stack:                       0       0         2048   
        Linker Generated:            0       49        0      
     +--+----------------------------+-------+---------+---------+
-       Grand Total:                 21119   2258      4152   
+       Grand Total:                 21807   2258      4180   
 
 
 LINKER GENERATED COPY TABLES
 
-__TI_cinit_table @ 20009b68 records: 2, size/record: 8, table size: 16
-	.data: load addr=20009b40, load size=0000000d bytes, run addr=20017824, run size=00000014 bytes, compression=lzss
-	.bss: load addr=20009b60, load size=00000008 bytes, run addr=20017800, run size=00000024 bytes, compression=zero_init
+__TI_cinit_table @ 20009e18 records: 2, size/record: 8, table size: 16
+	.data: load addr=20009df0, load size=0000000d bytes, run addr=20017840, run size=00000014 bytes, compression=lzss
+	.bss: load addr=20009e10, load size=00000008 bytes, run addr=20017800, run size=00000040 bytes, compression=zero_init
 
 
 LINKER GENERATED HANDLER TABLE
 
-__TI_handler_table @ 20009b50 records: 3, size/record: 4, table size: 12
+__TI_handler_table @ 20009e00 records: 3, size/record: 4, table size: 12
 	index: 0, handler: __TI_decompress_lzss
 	index: 1, handler: __TI_decompress_none
 	index: 2, handler: __TI_zero_init
@@ -331,117 +332,121 @@ GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name
 
 address   name                                                    
 -------   ----                                                    
-2000968d  C$$EXIT                                                 
-20009529  CPUcpsie                                                
-20007081  ClearTerm                                               
-2000708b  Error                                                   
-20009385  GPIOPinWrite                                            
-200070c3  GetCmd                                                  
-20009579  I2CMasterControl                                        
-200095d3  I2CMasterDataGet                                        
-200094bb  I2CMasterDataPut                                        
-200094d1  I2CMasterEnable                                         
-20009177  I2CMasterErr                                            
-20008881  I2CMasterInitExpClk                                     
-2000958b  I2CMasterIntClearEx                                     
-200093c5  I2CMasterIntStatusEx                                    
-200092fd  I2CMasterSlaveAddrSet                                   
-2000959d  I2CMasterTimeoutSet                                     
-2000702b  I2C_IF_Close                                            
-20006fe3  I2C_IF_Open                                             
-20006ee1  I2C_IF_Read                                             
-20006f9d  I2C_IF_ReadFrom                                         
-20006e31  I2C_IF_Write                                            
-20007041  InitTerm                                                
-200083e9  IntEnable                                               
-20009649  IntMasterEnable                                         
-2000953d  IntVTableBaseSet                                        
-2000705f  Message                                                 
-200078ad  PRCMCC3200MCUInit                                       
-200094e7  PRCMHIBRegRead                                          
-200094fd  PRCMHIBRegWrite                                         
-200091d1  PRCMPeripheralClkDisable                                
-2000903d  PRCMPeripheralClkEnable                                 
-200085c5  PRCMPeripheralClockGet                                  
-20008d51  PRCMPeripheralReset                                     
-200091a5  PRCMSysResetCauseGet                                    
-200086ed  PinConfigSet                                            
-20008f7d  PinModeSet                                              
-20009401  PinTypeI2C                                              
-20009471  PinTypeUART                                             
-20007201  Report                                                  
-2000960b  ResetISR                                                
-20009b38  SHT$$INIT_ARRAY$$Base                                   
-20009b3c  SHT$$INIT_ARRAY$$Limit                                  
-20007169  TrimSpace                                               
-2000941d  UARTCharGetNonBlocking                                  
-200093e3  UARTCharPut                                             
-2000948b  UARTCharsAvail                                          
-20008a75  UARTConfigSetExpClk                                     
-200090e9  UARTDisable                                             
-20009249  UARTEnable                                              
-2000966d  UtilsDelay                                              
-20006acd  _Z12PinMuxConfigv                                       
-20006b91  _Z13GetSensorDatav                                      
-20006885  _ZN10SFEVL53L1X11getDistanceEv                          
-20006871  _ZN10SFEVL53L1X11getSensorIDEv                          
-200067a7  _ZN10SFEVL53L1X11stopRangingEv                          
-20006799  _ZN10SFEVL53L1X12startRangingEv                         
-20006749  _ZN10SFEVL53L1X13getI2CAddressEv                        
-200068c1  _ZN10SFEVL53L1X13getSignalRateEv                        
-2000672b  _ZN10SFEVL53L1X13setI2CAddressEh                        
-20006aa9  _ZN10SFEVL53L1X14calibrateXTalkEt                       
-20006857  _ZN10SFEVL53L1X14checkBootStateEv                       
-20006757  _ZN10SFEVL53L1X14clearInterruptEv                       
-200068e9  _ZN10SFEVL53L1X14getAmbientRateEv                       
-200068fd  _ZN10SFEVL53L1X14getRangeStatusEv                       
-20006a85  _ZN10SFEVL53L1X15calibrateOffsetEt                      
-20006819  _ZN10SFEVL53L1X15getDistanceModeEv                      
-20006899  _ZN10SFEVL53L1X16getSignalPerSpadEv                     
-200067b5  _ZN10SFEVL53L1X17checkForDataReadyEv                    
-200068ad  _ZN10SFEVL53L1X17getAmbientPerSpadEv                    
-20006a63  _ZN10SFEVL53L1X17getSigmaThresholdEv                    
-20006a4d  _ZN10SFEVL53L1X17setSigmaThresholdEt                    
-20006a39  _ZN10SFEVL53L1X18getSignalThresholdEv                   
-2000670f  _ZN10SFEVL53L1X18getSoftwareVersionEv                   
-20006a23  _ZN10SFEVL53L1X18setSignalThresholdEt                   
-200067e5  _ZN10SFEVL53L1X19getTimingBudgetInMsEv                  
-200067f9  _ZN10SFEVL53L1X19setDistanceModeLongEv                  
-200067cf  _ZN10SFEVL53L1X19setTimingBudgetInMsEt                  
-20006785  _ZN10SFEVL53L1X20getInterruptPolarityEv                 
-20006809  _ZN10SFEVL53L1X20setDistanceModeShortEv                 
-20006965  _ZN10SFEVL53L1X20setDistanceThresholdEtth               
-20006a77  _ZN10SFEVL53L1X22startTemperatureUpdateEv               
-200069ad  _ZN10SFEVL53L1X23getDistanceThresholdLowEv              
-20006775  _ZN10SFEVL53L1X23setInterruptPolarityLowEv              
-200069c1  _ZN10SFEVL53L1X24getDistanceThresholdHighEv             
-20006765  _ZN10SFEVL53L1X24setInterruptPolarityHighEv             
-20006843  _ZN10SFEVL53L1X25getIntermeasurementPeriodEv            
-2000682d  _ZN10SFEVL53L1X25setIntermeasurementPeriodEt            
-20006999  _ZN10SFEVL53L1X26getDistanceThresholdWindowEv           
-2000667f  _ZN10SFEVL53L1X4initEv                                  
-20006695  _ZN10SFEVL53L1X5beginEv                                 
-200069d5  _ZN10SFEVL53L1X6setROIEtt                               
-200066ab  _ZN10SFEVL53L1X7checkIDEv                               
-200069f3  _ZN10SFEVL53L1X7getROIXEv                               
-20006a0b  _ZN10SFEVL53L1X7getROIYEv                               
-20006951  _ZN10SFEVL53L1X8getXTalkEv                              
-200066cd  _ZN10SFEVL53L1X8sensorOnEv                              
-2000693b  _ZN10SFEVL53L1X8setXTalkEt                              
-20006927  _ZN10SFEVL53L1X9getOffsetEv                             
-200068d5  _ZN10SFEVL53L1X9getSpadNbEv                             
-200066ef  _ZN10SFEVL53L1X9sensorOffEv                             
-20006911  _ZN10SFEVL53L1X9setOffsetEs                             
-20006615  _ZN10SFEVL53L1XC1Ejmhmh                                 
-20006615  _ZN10SFEVL53L1XC2Ejmhmh                                 
-200095e1  _ZN10__cxxabiv117__class_type_infoD0Ev                  
-20009679  _ZN10__cxxabiv117__class_type_infoD1Ev                  
-20009679  _ZN10__cxxabiv117__class_type_infoD2Ev                  
-200095ef  _ZN10__cxxabiv120__si_class_type_infoD0Ev               
-2000967d  _ZN10__cxxabiv120__si_class_type_infoD1Ev               
-2000967d  _ZN10__cxxabiv120__si_class_type_infoD2Ev               
-2000926d  _ZN7VL53L1X10VL53L1_OffEv                               
-2000931f  _ZN7VL53L1X11GetDistanceEPj                             
+2000993d  C$$EXIT                                                 
+200097d9  CPUcpsie                                                
+20007331  ClearTerm                                               
+2000733b  Error                                                   
+20009635  GPIOPinWrite                                            
+20007373  GetCmd                                                  
+20009829  I2CMasterControl                                        
+20009883  I2CMasterDataGet                                        
+2000976b  I2CMasterDataPut                                        
+20009781  I2CMasterEnable                                         
+20009427  I2CMasterErr                                            
+20008b31  I2CMasterInitExpClk                                     
+2000983b  I2CMasterIntClearEx                                     
+20009675  I2CMasterIntStatusEx                                    
+200095ad  I2CMasterSlaveAddrSet                                   
+2000984d  I2CMasterTimeoutSet                                     
+200072db  I2C_IF_Close                                            
+20007293  I2C_IF_Open                                             
+20007191  I2C_IF_Read                                             
+2000724d  I2C_IF_ReadFrom                                         
+200070e1  I2C_IF_Write                                            
+200072f1  InitTerm                                                
+20008699  IntEnable                                               
+200098f9  IntMasterEnable                                         
+200097ed  IntVTableBaseSet                                        
+2000730f  Message                                                 
+20007b5d  PRCMCC3200MCUInit                                       
+20009797  PRCMHIBRegRead                                          
+200097ad  PRCMHIBRegWrite                                         
+20009481  PRCMPeripheralClkDisable                                
+200092ed  PRCMPeripheralClkEnable                                 
+20008875  PRCMPeripheralClockGet                                  
+20009001  PRCMPeripheralReset                                     
+20009455  PRCMSysResetCauseGet                                    
+2000899d  PinConfigSet                                            
+2000922d  PinModeSet                                              
+200096b1  PinTypeI2C                                              
+20009721  PinTypeUART                                             
+200074b1  Report                                                  
+200098bb  ResetISR                                                
+20009de8  SHT$$INIT_ARRAY$$Base                                   
+20009dec  SHT$$INIT_ARRAY$$Limit                                  
+20007419  TrimSpace                                               
+200096cd  UARTCharGetNonBlocking                                  
+20009693  UARTCharPut                                             
+2000973b  UARTCharsAvail                                          
+20008d25  UARTConfigSetExpClk                                     
+20009399  UARTDisable                                             
+200094f9  UARTEnable                                              
+2000991d  UtilsDelay                                              
+20006615  _Z12PinMuxConfigv                                       
+20006811  _Z13GetSensorDatav                                      
+20006701  _Z14PinMuxSensor12v                                     
+2000672b  _Z14PinMuxSensor34v                                     
+20006755  _Z16InitiateSensor12v                                   
+200067b1  _Z16InitiateSensor34v                                   
+20006e25  _ZN10SFEVL53L1X11getDistanceEv                          
+20006e11  _ZN10SFEVL53L1X11getSensorIDEv                          
+20006d47  _ZN10SFEVL53L1X11stopRangingEv                          
+20006d39  _ZN10SFEVL53L1X12startRangingEv                         
+20006ce9  _ZN10SFEVL53L1X13getI2CAddressEv                        
+20006e61  _ZN10SFEVL53L1X13getSignalRateEv                        
+20006ccb  _ZN10SFEVL53L1X13setI2CAddressEh                        
+20007049  _ZN10SFEVL53L1X14calibrateXTalkEt                       
+20006df7  _ZN10SFEVL53L1X14checkBootStateEv                       
+20006cf7  _ZN10SFEVL53L1X14clearInterruptEv                       
+20006e89  _ZN10SFEVL53L1X14getAmbientRateEv                       
+20006e9d  _ZN10SFEVL53L1X14getRangeStatusEv                       
+20007025  _ZN10SFEVL53L1X15calibrateOffsetEt                      
+20006db9  _ZN10SFEVL53L1X15getDistanceModeEv                      
+20006e39  _ZN10SFEVL53L1X16getSignalPerSpadEv                     
+20006d55  _ZN10SFEVL53L1X17checkForDataReadyEv                    
+20006e4d  _ZN10SFEVL53L1X17getAmbientPerSpadEv                    
+20007003  _ZN10SFEVL53L1X17getSigmaThresholdEv                    
+20006fed  _ZN10SFEVL53L1X17setSigmaThresholdEt                    
+20006fd9  _ZN10SFEVL53L1X18getSignalThresholdEv                   
+20006caf  _ZN10SFEVL53L1X18getSoftwareVersionEv                   
+20006fc3  _ZN10SFEVL53L1X18setSignalThresholdEt                   
+20006d85  _ZN10SFEVL53L1X19getTimingBudgetInMsEv                  
+20006d99  _ZN10SFEVL53L1X19setDistanceModeLongEv                  
+20006d6f  _ZN10SFEVL53L1X19setTimingBudgetInMsEt                  
+20006d25  _ZN10SFEVL53L1X20getInterruptPolarityEv                 
+20006da9  _ZN10SFEVL53L1X20setDistanceModeShortEv                 
+20006f05  _ZN10SFEVL53L1X20setDistanceThresholdEtth               
+20007017  _ZN10SFEVL53L1X22startTemperatureUpdateEv               
+20006f4d  _ZN10SFEVL53L1X23getDistanceThresholdLowEv              
+20006d15  _ZN10SFEVL53L1X23setInterruptPolarityLowEv              
+20006f61  _ZN10SFEVL53L1X24getDistanceThresholdHighEv             
+20006d05  _ZN10SFEVL53L1X24setInterruptPolarityHighEv             
+20006de3  _ZN10SFEVL53L1X25getIntermeasurementPeriodEv            
+20006dcd  _ZN10SFEVL53L1X25setIntermeasurementPeriodEt            
+20006f39  _ZN10SFEVL53L1X26getDistanceThresholdWindowEv           
+20006c1f  _ZN10SFEVL53L1X4initEv                                  
+20006c35  _ZN10SFEVL53L1X5beginEv                                 
+20006f75  _ZN10SFEVL53L1X6setROIEtt                               
+20006c4b  _ZN10SFEVL53L1X7checkIDEv                               
+20006f93  _ZN10SFEVL53L1X7getROIXEv                               
+20006fab  _ZN10SFEVL53L1X7getROIYEv                               
+20006ef1  _ZN10SFEVL53L1X8getXTalkEv                              
+20006c6d  _ZN10SFEVL53L1X8sensorOnEv                              
+20006edb  _ZN10SFEVL53L1X8setXTalkEt                              
+20006ec7  _ZN10SFEVL53L1X9getOffsetEv                             
+20006e75  _ZN10SFEVL53L1X9getSpadNbEv                             
+20006c8f  _ZN10SFEVL53L1X9sensorOffEv                             
+20006eb1  _ZN10SFEVL53L1X9setOffsetEs                             
+20006bb5  _ZN10SFEVL53L1XC1Ejmhmh                                 
+20006bb5  _ZN10SFEVL53L1XC2Ejmhmh                                 
+20009891  _ZN10__cxxabiv117__class_type_infoD0Ev                  
+20009929  _ZN10__cxxabiv117__class_type_infoD1Ev                  
+20009929  _ZN10__cxxabiv117__class_type_infoD2Ev                  
+2000989f  _ZN10__cxxabiv120__si_class_type_infoD0Ev               
+2000992d  _ZN10__cxxabiv120__si_class_type_infoD1Ev               
+2000992d  _ZN10__cxxabiv120__si_class_type_infoD2Ev               
+2000951d  _ZN7VL53L1X10VL53L1_OffEv                               
+200095cf  _ZN7VL53L1X11GetDistanceEPj                             
 20005721  _ZN7VL53L1X13VL53L1_RdByteEP12VL53L1_Dev_ttPh           
 20005757  _ZN7VL53L1X13VL53L1_RdWordEP12VL53L1_Dev_ttPt           
 20005adf  _ZN7VL53L1X13VL53L1_WaitMsEP12VL53L1_Dev_ti             
@@ -498,127 +503,128 @@ address   name
 20004b47  _ZN7VL53L1X31VL53L1X_SetInterMeasurementInMsEt          
 2000516f  _ZN7VL53L1X32VL53L1X_GetDistanceThresholdHighEPt        
 20005111  _ZN7VL53L1X34VL53L1X_GetDistanceThresholdWindowEPt      
-20009619  _ZN7VL53L1X4InitEv                                      
-20009341  _ZN7VL53L1X6ReadIDEv                                    
-200091f9  _ZN7VL53L1X9VL53L1_OnEv                                 
-20008c31  _ZN7VL53L1XC1Ejmhmh                                     
-20009551  _ZN7VL53L1XD0Ev                                         
-20009625  _ZN7VL53L1XD1Ev                                         
+200098c9  _ZN7VL53L1X4InitEv                                      
+200095f1  _ZN7VL53L1X6ReadIDEv                                    
+200094a9  _ZN7VL53L1X9VL53L1_OnEv                                 
+20008ee1  _ZN7VL53L1XC1Ejmhmh                                     
+20009801  _ZN7VL53L1XD0Ev                                         
+200098d5  _ZN7VL53L1XD1Ev                                         
 20006613  _ZNSt9type_infoD1Ev                                     
 20006613  _ZNSt9type_infoD2Ev                                     
-20009631  _ZSt15get_new_handlerv                                  
-2000968d  _ZSt17__throw_bad_allocv                                
-20009ae8  _ZTI11RangeSensor                                       
-20009b24  _ZTI15ComponentObject                                   
-20009af4  _ZTI7VL53L1X                                            
-20009b00  _ZTIN10__cxxabiv117__class_type_infoE                   
-20009b0c  _ZTIN10__cxxabiv120__si_class_type_infoE                
-20009b2c  _ZTISt9type_info                                        
-20009acc  _ZTS11RangeSensor                                       
-20009a98  _ZTS15ComponentObject                                   
-20009b18  _ZTS7VL53L1X                                            
-20009a60  _ZTSN10__cxxabiv117__class_type_infoE                   
-20009a17  _ZTSN10__cxxabiv120__si_class_type_infoE                
-20009ada  _ZTSSt9type_info                                        
-20009a84  _ZTV11RangeSensor                                       
-20009a3c  _ZTV7VL53L1X                                            
-20009aac  _ZTVN10__cxxabiv117__class_type_infoE                   
-20009abc  _ZTVN10__cxxabiv120__si_class_type_infoE                
-20009653  _ZdlPv                                                  
-20009681  _ZdlPvj                                                 
-20009363  _Znwj                                                   
+200098e1  _ZSt15get_new_handlerv                                  
+2000993d  _ZSt17__throw_bad_allocv                                
+20009d98  _ZTI11RangeSensor                                       
+20009dd4  _ZTI15ComponentObject                                   
+20009da4  _ZTI7VL53L1X                                            
+20009db0  _ZTIN10__cxxabiv117__class_type_infoE                   
+20009dbc  _ZTIN10__cxxabiv120__si_class_type_infoE                
+20009ddc  _ZTISt9type_info                                        
+20009d7c  _ZTS11RangeSensor                                       
+20009d48  _ZTS15ComponentObject                                   
+20009dc8  _ZTS7VL53L1X                                            
+20009d10  _ZTSN10__cxxabiv117__class_type_infoE                   
+20009cc7  _ZTSN10__cxxabiv120__si_class_type_infoE                
+20009d8a  _ZTSSt9type_info                                        
+20009d34  _ZTV11RangeSensor                                       
+20009cec  _ZTV7VL53L1X                                            
+20009d5c  _ZTVN10__cxxabiv117__class_type_infoE                   
+20009d6c  _ZTVN10__cxxabiv120__si_class_type_infoE                
+20009903  _ZdlPv                                                  
+20009931  _ZdlPvj                                                 
+20009613  _Znwj                                                   
 20030000  __STACK_END                                             
 00000800  __STACK_SIZE                                            
 00000800  __SYSMEM_SIZE                                           
-20009b68  __TI_CINIT_Base                                         
-20009b78  __TI_CINIT_Limit                                        
-20009b50  __TI_Handler_Table_Base                                 
-20009b5c  __TI_Handler_Table_Limit                                
-20008c95  __TI_auto_init_nobinit                                  
-20008bc7  __TI_decompress_lzss                                    
-200095fd  __TI_decompress_none                                    
+20009e18  __TI_CINIT_Base                                         
+20009e28  __TI_CINIT_Limit                                        
+20009e00  __TI_Handler_Table_Base                                 
+20009e0c  __TI_Handler_Table_Limit                                
+20008f45  __TI_auto_init_nobinit                                  
+20008e77  __TI_decompress_lzss                                    
+200098ad  __TI_decompress_none                                    
 ffffffff  __TI_pprof_out_hndl                                     
 20005bc5  __TI_printfi                                            
 ffffffff  __TI_prof_data_size                                     
 ffffffff  __TI_prof_data_start                                    
-20009b40  __TI_static_base__                                      
-200095af  __TI_zero_init_nomemset                                 
-20009685  __abort_execution                                       
-20008775  __aeabi_cdcmpeq                                         
-20008775  __aeabi_cdcmple                                         
-200087fb  __aeabi_cdrcmple                                        
-20008b59  __aeabi_d2f                                             
-20008ef1  __aeabi_d2iz                                            
-20008f39  __aeabi_d2uiz                                           
-200076ff  __aeabi_dadd                                            
-20007b61  __aeabi_ddiv                                            
-20007db9  __aeabi_dmul                                            
-200076f5  __aeabi_dsub                                            
-2000965d  __aeabi_errno_addr                                      
-20009079  __aeabi_f2d                                             
-200090b1  __aeabi_f2iz                                            
-20007eb9  __aeabi_fadd                                            
-20008659  __aeabi_fdiv                                            
-20008981  __aeabi_fmul                                            
-20007eb5  __aeabi_fsub                                            
-20009149  __aeabi_i2d                                             
-20007c97  __aeabi_idiv0                                           
-20007c97  __aeabi_ldiv0                                           
-200089fb  __aeabi_memclr                                          
-200089fb  __aeabi_memclr4                                         
-200089fb  __aeabi_memclr8                                         
-20008491  __aeabi_memcpy                                          
-20008491  __aeabi_memcpy4                                         
-20008491  __aeabi_memcpy8                                         
-200089fd  __aeabi_memset                                          
-200089fd  __aeabi_memset4                                         
-200089fd  __aeabi_memset8                                         
-200093a5  __aeabi_ui2d                                            
-200092d9  __aeabi_ui2f                                            
-2000852d  __aeabi_uldivmod                                        
+20009df0  __TI_static_base__                                      
+2000985f  __TI_zero_init_nomemset                                 
+20009935  __abort_execution                                       
+20008a25  __aeabi_cdcmpeq                                         
+20008a25  __aeabi_cdcmple                                         
+20008aab  __aeabi_cdrcmple                                        
+20008e09  __aeabi_d2f                                             
+200091a1  __aeabi_d2iz                                            
+200091e9  __aeabi_d2uiz                                           
+200079af  __aeabi_dadd                                            
+20007e11  __aeabi_ddiv                                            
+20008069  __aeabi_dmul                                            
+200079a5  __aeabi_dsub                                            
+2000990d  __aeabi_errno_addr                                      
+20009329  __aeabi_f2d                                             
+20009361  __aeabi_f2iz                                            
+20008169  __aeabi_fadd                                            
+20008909  __aeabi_fdiv                                            
+20008c31  __aeabi_fmul                                            
+20008165  __aeabi_fsub                                            
+200093f9  __aeabi_i2d                                             
+20007f47  __aeabi_idiv0                                           
+20007f47  __aeabi_ldiv0                                           
+20008cab  __aeabi_memclr                                          
+20008cab  __aeabi_memclr4                                         
+20008cab  __aeabi_memclr8                                         
+20008741  __aeabi_memcpy                                          
+20008741  __aeabi_memcpy4                                         
+20008741  __aeabi_memcpy8                                         
+20008cad  __aeabi_memset                                          
+20008cad  __aeabi_memset4                                         
+20008cad  __aeabi_memset8                                         
+20009655  __aeabi_ui2d                                            
+20009589  __aeabi_ui2f                                            
+200087dd  __aeabi_uldivmod                                        
 ffffffff  __binit__                                               
 ffffffff  __c_args__                                              
-20009673  __cxa_pure_virtual                                      
+20009923  __cxa_pure_virtual                                      
 UNDEFED   __mpu_init                                              
 2002f800  __stack                                                 
-20006c91  __sti___8_main_cpp_36b080ae                             
-20009291  _c_int00_noargs                                         
-20009690  _ctypes_                                                
-20017824  _lock                                                   
-200078ab  _nop                                                    
+20006955  __sti___8_main_cpp_36b080ae                             
+20009541  _c_int00_noargs                                         
+20009940  _ctypes_                                                
+20017840  _lock                                                   
+20007b5b  _nop                                                    
 20017000  _sys_memory                                             
 UNDEFED   _system_post_cinit                                      
-20009689  _system_pre_init                                        
-20017828  _unlock                                                 
-2000968d  abort                                                   
-20007fb1  aligned_alloc                                           
-20008ea5  atoi                                                    
+20009939  _system_pre_init                                        
+20017844  _unlock                                                 
+2000993d  abort                                                   
+20008261  aligned_alloc                                           
+20009155  atoi                                                    
 ffffffff  binit                                                   
-2000963d  copysign                                                
-2000963d  copysignl                                               
-20017800  distanceSensor                                          
-20017834  errno                                                   
-200080a5  free                                                    
-20008cf5  frexp                                                   
-20008cf5  frexpl                                                  
+200098ed  copysign                                                
+200098ed  copysignl                                               
+20017800  distanceSensor12                                        
+2001781c  distanceSensor34                                        
+20017850  errno                                                   
+20008355  free                                                    
+20008fa5  frexp                                                   
+20008fa5  frexpl                                                  
 20004000  g_pfnVectors                                            
-20008265  ldexp                                                   
-20008265  ldexpl                                                  
-20008dff  ltoa                                                    
-20006c19  main                                                    
-20009665  malloc                                                  
-20007fb1  memalign                                                
-20009455  memccpy                                                 
-20008491  memcpy                                                  
-200092b5  memmove                                                 
-20008a03  memset                                                  
-2000818d  realloc                                                 
-20008265  scalbn                                                  
-20008265  scalbnl                                                 
-20009513  strchr                                                  
-20009565  strlen                                                  
-20008fbd  vsnprintf                                               
-200095c1  wcslen                                                  
+20008515  ldexp                                                   
+20008515  ldexpl                                                  
+200090af  ltoa                                                    
+20006929  main                                                    
+20009915  malloc                                                  
+20008261  memalign                                                
+20009705  memccpy                                                 
+20008741  memcpy                                                  
+20009565  memmove                                                 
+20008cb3  memset                                                  
+2000843d  realloc                                                 
+20008515  scalbn                                                  
+20008515  scalbnl                                                 
+200097c3  strchr                                                  
+20009815  strlen                                                  
+2000926d  vsnprintf                                               
+20009871  wcslen                                                  
 
 
 GLOBAL SYMBOLS: SORTED BY Symbol Address 
@@ -687,222 +693,227 @@ address   name
 20005bc5  __TI_printfi                                            
 20006613  _ZNSt9type_infoD1Ev                                     
 20006613  _ZNSt9type_infoD2Ev                                     
-20006615  _ZN10SFEVL53L1XC1Ejmhmh                                 
-20006615  _ZN10SFEVL53L1XC2Ejmhmh                                 
-2000667f  _ZN10SFEVL53L1X4initEv                                  
-20006695  _ZN10SFEVL53L1X5beginEv                                 
-200066ab  _ZN10SFEVL53L1X7checkIDEv                               
-200066cd  _ZN10SFEVL53L1X8sensorOnEv                              
-200066ef  _ZN10SFEVL53L1X9sensorOffEv                             
-2000670f  _ZN10SFEVL53L1X18getSoftwareVersionEv                   
-2000672b  _ZN10SFEVL53L1X13setI2CAddressEh                        
-20006749  _ZN10SFEVL53L1X13getI2CAddressEv                        
-20006757  _ZN10SFEVL53L1X14clearInterruptEv                       
-20006765  _ZN10SFEVL53L1X24setInterruptPolarityHighEv             
-20006775  _ZN10SFEVL53L1X23setInterruptPolarityLowEv              
-20006785  _ZN10SFEVL53L1X20getInterruptPolarityEv                 
-20006799  _ZN10SFEVL53L1X12startRangingEv                         
-200067a7  _ZN10SFEVL53L1X11stopRangingEv                          
-200067b5  _ZN10SFEVL53L1X17checkForDataReadyEv                    
-200067cf  _ZN10SFEVL53L1X19setTimingBudgetInMsEt                  
-200067e5  _ZN10SFEVL53L1X19getTimingBudgetInMsEv                  
-200067f9  _ZN10SFEVL53L1X19setDistanceModeLongEv                  
-20006809  _ZN10SFEVL53L1X20setDistanceModeShortEv                 
-20006819  _ZN10SFEVL53L1X15getDistanceModeEv                      
-2000682d  _ZN10SFEVL53L1X25setIntermeasurementPeriodEt            
-20006843  _ZN10SFEVL53L1X25getIntermeasurementPeriodEv            
-20006857  _ZN10SFEVL53L1X14checkBootStateEv                       
-20006871  _ZN10SFEVL53L1X11getSensorIDEv                          
-20006885  _ZN10SFEVL53L1X11getDistanceEv                          
-20006899  _ZN10SFEVL53L1X16getSignalPerSpadEv                     
-200068ad  _ZN10SFEVL53L1X17getAmbientPerSpadEv                    
-200068c1  _ZN10SFEVL53L1X13getSignalRateEv                        
-200068d5  _ZN10SFEVL53L1X9getSpadNbEv                             
-200068e9  _ZN10SFEVL53L1X14getAmbientRateEv                       
-200068fd  _ZN10SFEVL53L1X14getRangeStatusEv                       
-20006911  _ZN10SFEVL53L1X9setOffsetEs                             
-20006927  _ZN10SFEVL53L1X9getOffsetEv                             
-2000693b  _ZN10SFEVL53L1X8setXTalkEt                              
-20006951  _ZN10SFEVL53L1X8getXTalkEv                              
-20006965  _ZN10SFEVL53L1X20setDistanceThresholdEtth               
-20006999  _ZN10SFEVL53L1X26getDistanceThresholdWindowEv           
-200069ad  _ZN10SFEVL53L1X23getDistanceThresholdLowEv              
-200069c1  _ZN10SFEVL53L1X24getDistanceThresholdHighEv             
-200069d5  _ZN10SFEVL53L1X6setROIEtt                               
-200069f3  _ZN10SFEVL53L1X7getROIXEv                               
-20006a0b  _ZN10SFEVL53L1X7getROIYEv                               
-20006a23  _ZN10SFEVL53L1X18setSignalThresholdEt                   
-20006a39  _ZN10SFEVL53L1X18getSignalThresholdEv                   
-20006a4d  _ZN10SFEVL53L1X17setSigmaThresholdEt                    
-20006a63  _ZN10SFEVL53L1X17getSigmaThresholdEv                    
-20006a77  _ZN10SFEVL53L1X22startTemperatureUpdateEv               
-20006a85  _ZN10SFEVL53L1X15calibrateOffsetEt                      
-20006aa9  _ZN10SFEVL53L1X14calibrateXTalkEt                       
-20006acd  _Z12PinMuxConfigv                                       
-20006b91  _Z13GetSensorDatav                                      
-20006c19  main                                                    
-20006c91  __sti___8_main_cpp_36b080ae                             
-20006e31  I2C_IF_Write                                            
-20006ee1  I2C_IF_Read                                             
-20006f9d  I2C_IF_ReadFrom                                         
-20006fe3  I2C_IF_Open                                             
-2000702b  I2C_IF_Close                                            
-20007041  InitTerm                                                
-2000705f  Message                                                 
-20007081  ClearTerm                                               
-2000708b  Error                                                   
-200070c3  GetCmd                                                  
-20007169  TrimSpace                                               
-20007201  Report                                                  
-200076f5  __aeabi_dsub                                            
-200076ff  __aeabi_dadd                                            
-200078ab  _nop                                                    
-200078ad  PRCMCC3200MCUInit                                       
-20007b61  __aeabi_ddiv                                            
-20007c97  __aeabi_idiv0                                           
-20007c97  __aeabi_ldiv0                                           
-20007db9  __aeabi_dmul                                            
-20007eb5  __aeabi_fsub                                            
-20007eb9  __aeabi_fadd                                            
-20007fb1  aligned_alloc                                           
-20007fb1  memalign                                                
-200080a5  free                                                    
-2000818d  realloc                                                 
-20008265  ldexp                                                   
-20008265  ldexpl                                                  
-20008265  scalbn                                                  
-20008265  scalbnl                                                 
-200083e9  IntEnable                                               
-20008491  __aeabi_memcpy                                          
-20008491  __aeabi_memcpy4                                         
-20008491  __aeabi_memcpy8                                         
-20008491  memcpy                                                  
-2000852d  __aeabi_uldivmod                                        
-200085c5  PRCMPeripheralClockGet                                  
-20008659  __aeabi_fdiv                                            
-200086ed  PinConfigSet                                            
-20008775  __aeabi_cdcmpeq                                         
-20008775  __aeabi_cdcmple                                         
-200087fb  __aeabi_cdrcmple                                        
-20008881  I2CMasterInitExpClk                                     
-20008981  __aeabi_fmul                                            
-200089fb  __aeabi_memclr                                          
-200089fb  __aeabi_memclr4                                         
-200089fb  __aeabi_memclr8                                         
-200089fd  __aeabi_memset                                          
-200089fd  __aeabi_memset4                                         
-200089fd  __aeabi_memset8                                         
-20008a03  memset                                                  
-20008a75  UARTConfigSetExpClk                                     
-20008b59  __aeabi_d2f                                             
-20008bc7  __TI_decompress_lzss                                    
-20008c31  _ZN7VL53L1XC1Ejmhmh                                     
-20008c95  __TI_auto_init_nobinit                                  
-20008cf5  frexp                                                   
-20008cf5  frexpl                                                  
-20008d51  PRCMPeripheralReset                                     
-20008dff  ltoa                                                    
-20008ea5  atoi                                                    
-20008ef1  __aeabi_d2iz                                            
-20008f39  __aeabi_d2uiz                                           
-20008f7d  PinModeSet                                              
-20008fbd  vsnprintf                                               
-2000903d  PRCMPeripheralClkEnable                                 
-20009079  __aeabi_f2d                                             
-200090b1  __aeabi_f2iz                                            
-200090e9  UARTDisable                                             
-20009149  __aeabi_i2d                                             
-20009177  I2CMasterErr                                            
-200091a5  PRCMSysResetCauseGet                                    
-200091d1  PRCMPeripheralClkDisable                                
-200091f9  _ZN7VL53L1X9VL53L1_OnEv                                 
-20009249  UARTEnable                                              
-2000926d  _ZN7VL53L1X10VL53L1_OffEv                               
-20009291  _c_int00_noargs                                         
-200092b5  memmove                                                 
-200092d9  __aeabi_ui2f                                            
-200092fd  I2CMasterSlaveAddrSet                                   
-2000931f  _ZN7VL53L1X11GetDistanceEPj                             
-20009341  _ZN7VL53L1X6ReadIDEv                                    
-20009363  _Znwj                                                   
-20009385  GPIOPinWrite                                            
-200093a5  __aeabi_ui2d                                            
-200093c5  I2CMasterIntStatusEx                                    
-200093e3  UARTCharPut                                             
-20009401  PinTypeI2C                                              
-2000941d  UARTCharGetNonBlocking                                  
-20009455  memccpy                                                 
-20009471  PinTypeUART                                             
-2000948b  UARTCharsAvail                                          
-200094bb  I2CMasterDataPut                                        
-200094d1  I2CMasterEnable                                         
-200094e7  PRCMHIBRegRead                                          
-200094fd  PRCMHIBRegWrite                                         
-20009513  strchr                                                  
-20009529  CPUcpsie                                                
-2000953d  IntVTableBaseSet                                        
-20009551  _ZN7VL53L1XD0Ev                                         
-20009565  strlen                                                  
-20009579  I2CMasterControl                                        
-2000958b  I2CMasterIntClearEx                                     
-2000959d  I2CMasterTimeoutSet                                     
-200095af  __TI_zero_init_nomemset                                 
-200095c1  wcslen                                                  
-200095d3  I2CMasterDataGet                                        
-200095e1  _ZN10__cxxabiv117__class_type_infoD0Ev                  
-200095ef  _ZN10__cxxabiv120__si_class_type_infoD0Ev               
-200095fd  __TI_decompress_none                                    
-2000960b  ResetISR                                                
-20009619  _ZN7VL53L1X4InitEv                                      
-20009625  _ZN7VL53L1XD1Ev                                         
-20009631  _ZSt15get_new_handlerv                                  
-2000963d  copysign                                                
-2000963d  copysignl                                               
-20009649  IntMasterEnable                                         
-20009653  _ZdlPv                                                  
-2000965d  __aeabi_errno_addr                                      
-20009665  malloc                                                  
-2000966d  UtilsDelay                                              
-20009673  __cxa_pure_virtual                                      
-20009679  _ZN10__cxxabiv117__class_type_infoD1Ev                  
-20009679  _ZN10__cxxabiv117__class_type_infoD2Ev                  
-2000967d  _ZN10__cxxabiv120__si_class_type_infoD1Ev               
-2000967d  _ZN10__cxxabiv120__si_class_type_infoD2Ev               
-20009681  _ZdlPvj                                                 
-20009685  __abort_execution                                       
-20009689  _system_pre_init                                        
-2000968d  C$$EXIT                                                 
-2000968d  _ZSt17__throw_bad_allocv                                
-2000968d  abort                                                   
-20009690  _ctypes_                                                
-20009a17  _ZTSN10__cxxabiv120__si_class_type_infoE                
-20009a3c  _ZTV7VL53L1X                                            
-20009a60  _ZTSN10__cxxabiv117__class_type_infoE                   
-20009a84  _ZTV11RangeSensor                                       
-20009a98  _ZTS15ComponentObject                                   
-20009aac  _ZTVN10__cxxabiv117__class_type_infoE                   
-20009abc  _ZTVN10__cxxabiv120__si_class_type_infoE                
-20009acc  _ZTS11RangeSensor                                       
-20009ada  _ZTSSt9type_info                                        
-20009ae8  _ZTI11RangeSensor                                       
-20009af4  _ZTI7VL53L1X                                            
-20009b00  _ZTIN10__cxxabiv117__class_type_infoE                   
-20009b0c  _ZTIN10__cxxabiv120__si_class_type_infoE                
-20009b18  _ZTS7VL53L1X                                            
-20009b24  _ZTI15ComponentObject                                   
-20009b2c  _ZTISt9type_info                                        
-20009b38  SHT$$INIT_ARRAY$$Base                                   
-20009b3c  SHT$$INIT_ARRAY$$Limit                                  
-20009b40  __TI_static_base__                                      
-20009b50  __TI_Handler_Table_Base                                 
-20009b5c  __TI_Handler_Table_Limit                                
-20009b68  __TI_CINIT_Base                                         
-20009b78  __TI_CINIT_Limit                                        
+20006615  _Z12PinMuxConfigv                                       
+20006701  _Z14PinMuxSensor12v                                     
+2000672b  _Z14PinMuxSensor34v                                     
+20006755  _Z16InitiateSensor12v                                   
+200067b1  _Z16InitiateSensor34v                                   
+20006811  _Z13GetSensorDatav                                      
+20006929  main                                                    
+20006955  __sti___8_main_cpp_36b080ae                             
+20006bb5  _ZN10SFEVL53L1XC1Ejmhmh                                 
+20006bb5  _ZN10SFEVL53L1XC2Ejmhmh                                 
+20006c1f  _ZN10SFEVL53L1X4initEv                                  
+20006c35  _ZN10SFEVL53L1X5beginEv                                 
+20006c4b  _ZN10SFEVL53L1X7checkIDEv                               
+20006c6d  _ZN10SFEVL53L1X8sensorOnEv                              
+20006c8f  _ZN10SFEVL53L1X9sensorOffEv                             
+20006caf  _ZN10SFEVL53L1X18getSoftwareVersionEv                   
+20006ccb  _ZN10SFEVL53L1X13setI2CAddressEh                        
+20006ce9  _ZN10SFEVL53L1X13getI2CAddressEv                        
+20006cf7  _ZN10SFEVL53L1X14clearInterruptEv                       
+20006d05  _ZN10SFEVL53L1X24setInterruptPolarityHighEv             
+20006d15  _ZN10SFEVL53L1X23setInterruptPolarityLowEv              
+20006d25  _ZN10SFEVL53L1X20getInterruptPolarityEv                 
+20006d39  _ZN10SFEVL53L1X12startRangingEv                         
+20006d47  _ZN10SFEVL53L1X11stopRangingEv                          
+20006d55  _ZN10SFEVL53L1X17checkForDataReadyEv                    
+20006d6f  _ZN10SFEVL53L1X19setTimingBudgetInMsEt                  
+20006d85  _ZN10SFEVL53L1X19getTimingBudgetInMsEv                  
+20006d99  _ZN10SFEVL53L1X19setDistanceModeLongEv                  
+20006da9  _ZN10SFEVL53L1X20setDistanceModeShortEv                 
+20006db9  _ZN10SFEVL53L1X15getDistanceModeEv                      
+20006dcd  _ZN10SFEVL53L1X25setIntermeasurementPeriodEt            
+20006de3  _ZN10SFEVL53L1X25getIntermeasurementPeriodEv            
+20006df7  _ZN10SFEVL53L1X14checkBootStateEv                       
+20006e11  _ZN10SFEVL53L1X11getSensorIDEv                          
+20006e25  _ZN10SFEVL53L1X11getDistanceEv                          
+20006e39  _ZN10SFEVL53L1X16getSignalPerSpadEv                     
+20006e4d  _ZN10SFEVL53L1X17getAmbientPerSpadEv                    
+20006e61  _ZN10SFEVL53L1X13getSignalRateEv                        
+20006e75  _ZN10SFEVL53L1X9getSpadNbEv                             
+20006e89  _ZN10SFEVL53L1X14getAmbientRateEv                       
+20006e9d  _ZN10SFEVL53L1X14getRangeStatusEv                       
+20006eb1  _ZN10SFEVL53L1X9setOffsetEs                             
+20006ec7  _ZN10SFEVL53L1X9getOffsetEv                             
+20006edb  _ZN10SFEVL53L1X8setXTalkEt                              
+20006ef1  _ZN10SFEVL53L1X8getXTalkEv                              
+20006f05  _ZN10SFEVL53L1X20setDistanceThresholdEtth               
+20006f39  _ZN10SFEVL53L1X26getDistanceThresholdWindowEv           
+20006f4d  _ZN10SFEVL53L1X23getDistanceThresholdLowEv              
+20006f61  _ZN10SFEVL53L1X24getDistanceThresholdHighEv             
+20006f75  _ZN10SFEVL53L1X6setROIEtt                               
+20006f93  _ZN10SFEVL53L1X7getROIXEv                               
+20006fab  _ZN10SFEVL53L1X7getROIYEv                               
+20006fc3  _ZN10SFEVL53L1X18setSignalThresholdEt                   
+20006fd9  _ZN10SFEVL53L1X18getSignalThresholdEv                   
+20006fed  _ZN10SFEVL53L1X17setSigmaThresholdEt                    
+20007003  _ZN10SFEVL53L1X17getSigmaThresholdEv                    
+20007017  _ZN10SFEVL53L1X22startTemperatureUpdateEv               
+20007025  _ZN10SFEVL53L1X15calibrateOffsetEt                      
+20007049  _ZN10SFEVL53L1X14calibrateXTalkEt                       
+200070e1  I2C_IF_Write                                            
+20007191  I2C_IF_Read                                             
+2000724d  I2C_IF_ReadFrom                                         
+20007293  I2C_IF_Open                                             
+200072db  I2C_IF_Close                                            
+200072f1  InitTerm                                                
+2000730f  Message                                                 
+20007331  ClearTerm                                               
+2000733b  Error                                                   
+20007373  GetCmd                                                  
+20007419  TrimSpace                                               
+200074b1  Report                                                  
+200079a5  __aeabi_dsub                                            
+200079af  __aeabi_dadd                                            
+20007b5b  _nop                                                    
+20007b5d  PRCMCC3200MCUInit                                       
+20007e11  __aeabi_ddiv                                            
+20007f47  __aeabi_idiv0                                           
+20007f47  __aeabi_ldiv0                                           
+20008069  __aeabi_dmul                                            
+20008165  __aeabi_fsub                                            
+20008169  __aeabi_fadd                                            
+20008261  aligned_alloc                                           
+20008261  memalign                                                
+20008355  free                                                    
+2000843d  realloc                                                 
+20008515  ldexp                                                   
+20008515  ldexpl                                                  
+20008515  scalbn                                                  
+20008515  scalbnl                                                 
+20008699  IntEnable                                               
+20008741  __aeabi_memcpy                                          
+20008741  __aeabi_memcpy4                                         
+20008741  __aeabi_memcpy8                                         
+20008741  memcpy                                                  
+200087dd  __aeabi_uldivmod                                        
+20008875  PRCMPeripheralClockGet                                  
+20008909  __aeabi_fdiv                                            
+2000899d  PinConfigSet                                            
+20008a25  __aeabi_cdcmpeq                                         
+20008a25  __aeabi_cdcmple                                         
+20008aab  __aeabi_cdrcmple                                        
+20008b31  I2CMasterInitExpClk                                     
+20008c31  __aeabi_fmul                                            
+20008cab  __aeabi_memclr                                          
+20008cab  __aeabi_memclr4                                         
+20008cab  __aeabi_memclr8                                         
+20008cad  __aeabi_memset                                          
+20008cad  __aeabi_memset4                                         
+20008cad  __aeabi_memset8                                         
+20008cb3  memset                                                  
+20008d25  UARTConfigSetExpClk                                     
+20008e09  __aeabi_d2f                                             
+20008e77  __TI_decompress_lzss                                    
+20008ee1  _ZN7VL53L1XC1Ejmhmh                                     
+20008f45  __TI_auto_init_nobinit                                  
+20008fa5  frexp                                                   
+20008fa5  frexpl                                                  
+20009001  PRCMPeripheralReset                                     
+200090af  ltoa                                                    
+20009155  atoi                                                    
+200091a1  __aeabi_d2iz                                            
+200091e9  __aeabi_d2uiz                                           
+2000922d  PinModeSet                                              
+2000926d  vsnprintf                                               
+200092ed  PRCMPeripheralClkEnable                                 
+20009329  __aeabi_f2d                                             
+20009361  __aeabi_f2iz                                            
+20009399  UARTDisable                                             
+200093f9  __aeabi_i2d                                             
+20009427  I2CMasterErr                                            
+20009455  PRCMSysResetCauseGet                                    
+20009481  PRCMPeripheralClkDisable                                
+200094a9  _ZN7VL53L1X9VL53L1_OnEv                                 
+200094f9  UARTEnable                                              
+2000951d  _ZN7VL53L1X10VL53L1_OffEv                               
+20009541  _c_int00_noargs                                         
+20009565  memmove                                                 
+20009589  __aeabi_ui2f                                            
+200095ad  I2CMasterSlaveAddrSet                                   
+200095cf  _ZN7VL53L1X11GetDistanceEPj                             
+200095f1  _ZN7VL53L1X6ReadIDEv                                    
+20009613  _Znwj                                                   
+20009635  GPIOPinWrite                                            
+20009655  __aeabi_ui2d                                            
+20009675  I2CMasterIntStatusEx                                    
+20009693  UARTCharPut                                             
+200096b1  PinTypeI2C                                              
+200096cd  UARTCharGetNonBlocking                                  
+20009705  memccpy                                                 
+20009721  PinTypeUART                                             
+2000973b  UARTCharsAvail                                          
+2000976b  I2CMasterDataPut                                        
+20009781  I2CMasterEnable                                         
+20009797  PRCMHIBRegRead                                          
+200097ad  PRCMHIBRegWrite                                         
+200097c3  strchr                                                  
+200097d9  CPUcpsie                                                
+200097ed  IntVTableBaseSet                                        
+20009801  _ZN7VL53L1XD0Ev                                         
+20009815  strlen                                                  
+20009829  I2CMasterControl                                        
+2000983b  I2CMasterIntClearEx                                     
+2000984d  I2CMasterTimeoutSet                                     
+2000985f  __TI_zero_init_nomemset                                 
+20009871  wcslen                                                  
+20009883  I2CMasterDataGet                                        
+20009891  _ZN10__cxxabiv117__class_type_infoD0Ev                  
+2000989f  _ZN10__cxxabiv120__si_class_type_infoD0Ev               
+200098ad  __TI_decompress_none                                    
+200098bb  ResetISR                                                
+200098c9  _ZN7VL53L1X4InitEv                                      
+200098d5  _ZN7VL53L1XD1Ev                                         
+200098e1  _ZSt15get_new_handlerv                                  
+200098ed  copysign                                                
+200098ed  copysignl                                               
+200098f9  IntMasterEnable                                         
+20009903  _ZdlPv                                                  
+2000990d  __aeabi_errno_addr                                      
+20009915  malloc                                                  
+2000991d  UtilsDelay                                              
+20009923  __cxa_pure_virtual                                      
+20009929  _ZN10__cxxabiv117__class_type_infoD1Ev                  
+20009929  _ZN10__cxxabiv117__class_type_infoD2Ev                  
+2000992d  _ZN10__cxxabiv120__si_class_type_infoD1Ev               
+2000992d  _ZN10__cxxabiv120__si_class_type_infoD2Ev               
+20009931  _ZdlPvj                                                 
+20009935  __abort_execution                                       
+20009939  _system_pre_init                                        
+2000993d  C$$EXIT                                                 
+2000993d  _ZSt17__throw_bad_allocv                                
+2000993d  abort                                                   
+20009940  _ctypes_                                                
+20009cc7  _ZTSN10__cxxabiv120__si_class_type_infoE                
+20009cec  _ZTV7VL53L1X                                            
+20009d10  _ZTSN10__cxxabiv117__class_type_infoE                   
+20009d34  _ZTV11RangeSensor                                       
+20009d48  _ZTS15ComponentObject                                   
+20009d5c  _ZTVN10__cxxabiv117__class_type_infoE                   
+20009d6c  _ZTVN10__cxxabiv120__si_class_type_infoE                
+20009d7c  _ZTS11RangeSensor                                       
+20009d8a  _ZTSSt9type_info                                        
+20009d98  _ZTI11RangeSensor                                       
+20009da4  _ZTI7VL53L1X                                            
+20009db0  _ZTIN10__cxxabiv117__class_type_infoE                   
+20009dbc  _ZTIN10__cxxabiv120__si_class_type_infoE                
+20009dc8  _ZTS7VL53L1X                                            
+20009dd4  _ZTI15ComponentObject                                   
+20009ddc  _ZTISt9type_info                                        
+20009de8  SHT$$INIT_ARRAY$$Base                                   
+20009dec  SHT$$INIT_ARRAY$$Limit                                  
+20009df0  __TI_static_base__                                      
+20009e00  __TI_Handler_Table_Base                                 
+20009e0c  __TI_Handler_Table_Limit                                
+20009e18  __TI_CINIT_Base                                         
+20009e28  __TI_CINIT_Limit                                        
 20017000  _sys_memory                                             
-20017800  distanceSensor                                          
-20017824  _lock                                                   
-20017828  _unlock                                                 
-20017834  errno                                                   
+20017800  distanceSensor12                                        
+2001781c  distanceSensor34                                        
+20017840  _lock                                                   
+20017844  _unlock                                                 
+20017850  errno                                                   
 2002f800  __stack                                                 
 20030000  __STACK_END                                             
 ffffffff  __TI_pprof_out_hndl                                     
@@ -914,4 +925,4 @@ ffffffff  binit
 UNDEFED   __mpu_init                                              
 UNDEFED   _system_post_cinit                                      
 
-[288 symbols]
+[293 symbols]
