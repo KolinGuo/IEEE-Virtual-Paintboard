@@ -1,20 +1,21 @@
 # FIXED
 
 main.obj: ../main.c
-main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/stdio.h
-main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/_ti_config.h
-main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/linkage.h
-main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/stdarg.h
-main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/sys/_types.h
-main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/sys/cdefs.h
-main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/machine/_types.h
-main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/string.h
-main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/stdint.h
-main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/sys/stdint.h
-main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/machine/_stdint.h
-main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/sys/_stdint.h
-main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/stdlib.h
-main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/stdbool.h
+main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/stdio.h
+main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/_ti_config.h
+main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/linkage.h
+main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/stdarg.h
+main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/sys/_types.h
+main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/sys/cdefs.h
+main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/machine/_types.h
+main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/string.h
+main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/stdint.h
+main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/_stdint40.h
+main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/sys/stdint.h
+main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/machine/_stdint.h
+main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/sys/_stdint.h
+main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/stdlib.h
+main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/stdbool.h
 main.obj: D:/ti/cc3200sdk/CC3200SDK_1.3.0/cc3200-sdk/simplelink/include/simplelink.h
 main.obj: D:/ti/cc3200sdk/CC3200SDK_1.3.0/cc3200-sdk/simplelink/include/../user.h
 main.obj: D:/ti/cc3200sdk/CC3200SDK_1.3.0/cc3200-sdk/simplelink/include/../cc_pal.h
@@ -59,20 +60,21 @@ main.obj: ../test.h
 main.obj: ../camera_app.h
 
 ../main.c: 
-D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/stdio.h: 
-D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/_ti_config.h: 
-D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/linkage.h: 
-D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/stdarg.h: 
-D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/sys/_types.h: 
-D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/sys/cdefs.h: 
-D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/machine/_types.h: 
-D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/string.h: 
-D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/stdint.h: 
-D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/sys/stdint.h: 
-D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/machine/_stdint.h: 
-D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/sys/_stdint.h: 
-D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/stdlib.h: 
-D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/stdbool.h: 
+D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/stdio.h: 
+D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/_ti_config.h: 
+D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/linkage.h: 
+D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/stdarg.h: 
+D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/sys/_types.h: 
+D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/sys/cdefs.h: 
+D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/machine/_types.h: 
+D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/string.h: 
+D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/stdint.h: 
+D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/_stdint40.h: 
+D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/sys/stdint.h: 
+D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/machine/_stdint.h: 
+D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/sys/_stdint.h: 
+D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/stdlib.h: 
+D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/stdbool.h: 
 D:/ti/cc3200sdk/CC3200SDK_1.3.0/cc3200-sdk/simplelink/include/simplelink.h: 
 D:/ti/cc3200sdk/CC3200SDK_1.3.0/cc3200-sdk/simplelink/include/../user.h: 
 D:/ti/cc3200sdk/CC3200SDK_1.3.0/cc3200-sdk/simplelink/include/../cc_pal.h: 

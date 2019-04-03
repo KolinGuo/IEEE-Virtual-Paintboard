@@ -4,7 +4,7 @@
 
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS
+CG_TOOL_ROOT := D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS
 
 GEN_OPTS__FLAG := 
 GEN_CMDS__FLAG := 
@@ -153,7 +153,7 @@ all: Lab6.out
 Lab6.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: ARM Linker'
-	"D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib -me -Ooff --define=ccs --define=cc3200 -g --gcc --printf_support=full --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"Lab6.map" --heap_size=0x00008000 --stack_size=0x00001000 -i"D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/lib" -i"D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="Lab6_linkInfo.xml" --rom_model -o "Lab6.out" $(ORDERED_OBJS)
+	"D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib -me -O4 --opt_for_speed=5 --define=ccs --define=cc3200 -g --gcc --printf_support=full --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"Lab6.map" --heap_size=0x00008000 --stack_size=0x00001000 -i"D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/lib" -i"D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="Lab6_linkInfo.xml" --rom_model -o "Lab6.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 	@$(MAKE) --no-print-directory post-build
@@ -161,7 +161,7 @@ Lab6.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 Lab6.bin: $(EXE_OUTPUTS)
 	@echo 'Building files: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo 'Invoking: ARM Hex Utility'
-	"D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/bin/armhex"  -o "Lab6.bin" $(EXE_OUTPUTS__QUOTED)
+	"D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/bin/armhex"  -o "Lab6.bin" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo ' '
 	@$(MAKE) --no-print-directory post-build
@@ -176,7 +176,7 @@ clean:
 
 post-build:
 	-@echo 'Bin Generation'
-	-"D:/ti/ccs800/ccsv8/utils/tiobj2bin/tiobj2bin" "Lab6.out" "Lab6.bin" "D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/bin/armofd" "D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/bin/armhex" "D:/ti/ccs800/ccsv8/utils/tiobj2bin/mkhex4bin"
+	-"D:/ti/ccs800/ccsv8/utils/tiobj2bin/tiobj2bin" "Lab6.out" "Lab6.bin" "D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/bin/armofd" "D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/bin/armhex" "D:/ti/ccs800/ccsv8/utils/tiobj2bin/mkhex4bin"
 	-@echo ' '
 
 .PHONY: all clean dependents

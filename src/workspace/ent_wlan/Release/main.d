@@ -3,10 +3,10 @@
 main.obj: ../main.c
 main.obj: D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/simplelink/include/simplelink.h
 main.obj: D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/simplelink/include/../user.h
-main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/string.h
-main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/_ti_config.h
-main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/linkage.h
-main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/sys/cdefs.h
+main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/string.h
+main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/_ti_config.h
+main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/linkage.h
+main.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/sys/cdefs.h
 main.obj: D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/simplelink/include/../cc_pal.h
 main.obj: D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/simplelink_extlib/provisioninglib/provisioning_api.h
 main.obj: D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/simplelink/include/simplelink.h
@@ -36,10 +36,10 @@ main.obj: D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/example/common/uart_if.h
 ../main.c: 
 D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/simplelink/include/simplelink.h: 
 D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/simplelink/include/../user.h: 
-D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/string.h: 
-D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/_ti_config.h: 
-D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/linkage.h: 
-D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/sys/cdefs.h: 
+D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/string.h: 
+D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/_ti_config.h: 
+D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/linkage.h: 
+D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/sys/cdefs.h: 
 D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/simplelink/include/../cc_pal.h: 
 D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/simplelink_extlib/provisioninglib/provisioning_api.h: 
 D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/simplelink/include/simplelink.h: 

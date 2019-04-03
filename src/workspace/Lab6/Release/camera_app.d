@@ -1,15 +1,15 @@
 # FIXED
 
 camera_app.obj: ../camera_app.c
-camera_app.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/stdio.h
-camera_app.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/_ti_config.h
-camera_app.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/linkage.h
-camera_app.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/stdarg.h
-camera_app.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/sys/_types.h
-camera_app.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/sys/cdefs.h
-camera_app.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/machine/_types.h
-camera_app.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/string.h
-camera_app.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/stdlib.h
+camera_app.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/stdio.h
+camera_app.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/_ti_config.h
+camera_app.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/linkage.h
+camera_app.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/stdarg.h
+camera_app.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/sys/_types.h
+camera_app.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/sys/cdefs.h
+camera_app.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/machine/_types.h
+camera_app.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/string.h
+camera_app.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/stdlib.h
 camera_app.obj: D:/ti/cc3200sdk/CC3200SDK_1.3.0/cc3200-sdk/inc/hw_types.h
 camera_app.obj: D:/ti/cc3200sdk/CC3200SDK_1.3.0/cc3200-sdk/inc/hw_memmap.h
 camera_app.obj: D:/ti/cc3200sdk/CC3200SDK_1.3.0/cc3200-sdk/driverlib/rom_map.h
@@ -39,15 +39,15 @@ camera_app.obj: D:/ti/cc3200sdk/CC3200SDK_1.3.0/cc3200-sdk/example/common/common
 camera_app.obj: ../camera_app.h
 
 ../camera_app.c: 
-D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/stdio.h: 
-D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/_ti_config.h: 
-D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/linkage.h: 
-D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/stdarg.h: 
-D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/sys/_types.h: 
-D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/sys/cdefs.h: 
-D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/machine/_types.h: 
-D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/string.h: 
-D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/include/stdlib.h: 
+D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/stdio.h: 
+D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/_ti_config.h: 
+D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/linkage.h: 
+D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/stdarg.h: 
+D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/sys/_types.h: 
+D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/sys/cdefs.h: 
+D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/machine/_types.h: 
+D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/string.h: 
+D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/stdlib.h: 
 D:/ti/cc3200sdk/CC3200SDK_1.3.0/cc3200-sdk/inc/hw_types.h: 
 D:/ti/cc3200sdk/CC3200SDK_1.3.0/cc3200-sdk/inc/hw_memmap.h: 
 D:/ti/cc3200sdk/CC3200SDK_1.3.0/cc3200-sdk/driverlib/rom_map.h: 
