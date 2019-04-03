@@ -138,16 +138,19 @@ void GetSensorData()
         int distance = distanceSensor.getDistance(); //Get the result of the measurement from the sensor
         distanceSensor.stopRanging();
 
+        float distanceInches = distance * 0.0393701;
+        float distanceFeet = distanceInches / 12.0;
+
         //void setROI(uint16_t x, uint16_t y); //Set the height and width of the ROI in SPADs, lowest possible option is 4. ROI is always centered.
         //uint16_t getROIX(); //Returns the width of the ROI in SPADs
         //uint16_t getROIY(); //Returns the height of the ROI in SPADs
         int roiWidth = distanceSensor.getROIX();
         int roiHeight = distanceSensor.getROIY();
 
-        float distanceInches = distance * 0.0393701;
-        float distanceFeet = distanceInches / 12.0;
+        int signalRate = distanceSensor.getSignalRate();
+
         //Report("ROIX: %d\tROIY: %d\tDistance(mm): %d\n\r", roiWidth, roiHeight, distance);
-        Report("ROIX: %d\tROIY: %d\tDistance(mm): %d\tDistance(ft): %.2f\n\r", roiWidth, roiHeight, distance, distanceFeet);
+        Report("Signal Rate: %d\tROIX: %d\tROIY: %d\tDistance(mm): %d\tDistance(ft): %.2f\n\r", signalRate, roiWidth, roiHeight, distance, distanceFeet);
 
         MAP_UtilsDelay(8000000);
     }
