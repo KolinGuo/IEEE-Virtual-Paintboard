@@ -51,6 +51,7 @@
 #define RET_IF_ERR(Func)          {int iRetVal = (Func); \
                                    if (SUCCESS != iRetVal) \
                                      return  iRetVal;}
+#define SAFERGETVL53L1X         1
 
 //*****************************************************************************
 //                 GLOBAL VARIABLES -- Start
@@ -135,7 +136,19 @@ void GetSensorData()
     while(1)
     {
         distanceSensor.startRanging(); //Write configuration bytes to initiate measurement
+
+        if (SAFERGETVL53L1X)
+            while (!distanceSensor.checkForDataReady())
+                MAP_UtilsDelay(800000);
+
+        if (SAFERGETVL53L1X)
+            uint8_t rangeStatus = distanceSensor.getRangeStatus();
+
         int distance = distanceSensor.getDistance(); //Get the result of the measurement from the sensor
+
+        if (SAFERGETVL53L1X)
+            distanceSensor.clearInterrupt();
+
         distanceSensor.stopRanging();
 
         float distanceInches = distance * 0.0393701;
@@ -147,10 +160,8 @@ void GetSensorData()
         int roiWidth = distanceSensor.getROIX();
         int roiHeight = distanceSensor.getROIY();
 
-        int signalRate = distanceSensor.getSignalRate();
-
         //Report("ROIX: %d\tROIY: %d\tDistance(mm): %d\n\r", roiWidth, roiHeight, distance);
-        Report("Signal Rate: %d\tROIX: %d\tROIY: %d\tDistance(mm): %d\tDistance(ft): %.2f\n\r", signalRate, roiWidth, roiHeight, distance, distanceFeet);
+        Report("ROIX: %d\tROIY: %d\tDistance(mm): %d\tDistance(ft): %.2f\n\r", roiWidth, roiHeight, distance, distanceFeet);
 
         MAP_UtilsDelay(8000000);
     }
@@ -183,8 +194,23 @@ void main()
     // I2C Init
     I2C_IF_Open(I2C_MASTER_MODE_FST);
 
+    if (SAFERGETVL53L1X)
+        while (!distanceSensor.checkBootState())
+            MAP_UtilsDelay(800000);
+
     if (distanceSensor.begin() == false)
         Report("Sensor online!\n\r");
+
+    if (SAFERGETVL53L1X)
+        Report("Using Safer Communication with VL53L1X...\n\r");
+
+    distanceSensor.setDistanceModeShort();
+
+    uint8_t distMode = distanceSensor.getDistanceMode();
+    if (distMode == 1)
+        Report("\n\rSensor in short distance mode\n\r");
+    else if (distMode == 2)
+        Report("\n\rSensor in long distance mode\n\r");
 
     UART_PRINT("Initialization Complete...Starting Program...\n\r\n\r");
 
