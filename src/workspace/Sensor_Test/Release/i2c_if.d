@@ -1,6 +1,6 @@
 # FIXED
 
-i2c_if.obj: D:/ti/cc3200sdk/CC3200SDK_1.3.0/cc3200-sdk/example/common/i2c_if.c
+i2c_if.obj: D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/example/common/i2c_if.c
 i2c_if.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/stdbool.h
 i2c_if.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/stdint.h
 i2c_if.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/_stdint40.h
@@ -23,9 +23,9 @@ i2c_if.obj: D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/driverlib/rom.h
 i2c_if.obj: D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/driverlib/rom_map.h
 i2c_if.obj: D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/driverlib/rom_patch.h
 i2c_if.obj: D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/driverlib/prcm.h
-i2c_if.obj: D:/ti/cc3200sdk/CC3200SDK_1.3.0/cc3200-sdk/example/common/i2c_if.h
+i2c_if.obj: D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/example/common/i2c_if.h
 
-D:/ti/cc3200sdk/CC3200SDK_1.3.0/cc3200-sdk/example/common/i2c_if.c: 
+D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/example/common/i2c_if.c: 
 D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/stdbool.h: 
 D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/stdint.h: 
 D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/_stdint40.h: 
@@ -48,4 +48,4 @@ D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/driverlib/rom.h:
 D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/driverlib/rom_map.h: 
 D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/driverlib/rom_patch.h: 
 D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/driverlib/prcm.h: 
-D:/ti/cc3200sdk/CC3200SDK_1.3.0/cc3200-sdk/example/common/i2c_if.h: 
+D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/example/common/i2c_if.h: 

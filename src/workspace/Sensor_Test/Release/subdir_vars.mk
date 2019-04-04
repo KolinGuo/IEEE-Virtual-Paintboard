@@ -14,10 +14,10 @@ CMD_SRCS += \
 ../cc3200v1p32.cmd 
 
 C_SRCS += \
-D:/ti/cc3200sdk/CC3200SDK_1.3.0/cc3200-sdk/example/common/i2c_if.c \
+D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/example/common/i2c_if.c \
 ../pin_mux_config.c \
-D:/ti/cc3200sdk/CC3200SDK_1.3.0/cc3200-sdk/example/common/startup_ccs.c \
-D:/ti/cc3200sdk/CC3200SDK_1.3.0/cc3200-sdk/example/common/uart_if.c 
+D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/example/common/startup_ccs.c \
+D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/example/common/uart_if.c 
 
 C_DEPS += \
 ./i2c_if.d \
@@ -65,9 +65,9 @@ CPP_SRCS__QUOTED += \
 "../vl53l1x_class.cpp" 
 
 C_SRCS__QUOTED += \
-"D:/ti/cc3200sdk/CC3200SDK_1.3.0/cc3200-sdk/example/common/i2c_if.c" \
+"D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/example/common/i2c_if.c" \
 "../pin_mux_config.c" \
-"D:/ti/cc3200sdk/CC3200SDK_1.3.0/cc3200-sdk/example/common/startup_ccs.c" \
-"D:/ti/cc3200sdk/CC3200SDK_1.3.0/cc3200-sdk/example/common/uart_if.c" 
+"D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/example/common/startup_ccs.c" \
+"D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/example/common/uart_if.c" 
 
 

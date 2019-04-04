@@ -1,6 +1,6 @@
 # FIXED
 
-uart_if.obj: D:/ti/cc3200sdk/CC3200SDK_1.3.0/cc3200-sdk/example/common/uart_if.c
+uart_if.obj: D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/example/common/uart_if.c
 uart_if.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/stdarg.h
 uart_if.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/sys/_types.h
 uart_if.obj: D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/sys/cdefs.h
@@ -18,9 +18,9 @@ uart_if.obj: D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/driverlib/uart.h
 uart_if.obj: D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/driverlib/rom.h
 uart_if.obj: D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/driverlib/rom_map.h
 uart_if.obj: D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/driverlib/rom_patch.h
-uart_if.obj: D:/ti/cc3200sdk/CC3200SDK_1.3.0/cc3200-sdk/example/common/uart_if.h
+uart_if.obj: D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/example/common/uart_if.h
 
-D:/ti/cc3200sdk/CC3200SDK_1.3.0/cc3200-sdk/example/common/uart_if.c: 
+D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/example/common/uart_if.c: 
 D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/stdarg.h: 
 D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/sys/_types.h: 
 D:/ti/ccs800/ccsv8/tools/compiler/ti-cgt-arm_18.12.1.LTS/include/sys/cdefs.h: 
@@ -38,4 +38,4 @@ D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/driverlib/uart.h:
 D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/driverlib/rom.h: 
 D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/driverlib/rom_map.h: 
 D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/driverlib/rom_patch.h: 
-D:/ti/cc3200sdk/CC3200SDK_1.3.0/cc3200-sdk/example/common/uart_if.h: 
+D:/ti/CC3200SDK/CC3200SDK_1.3.0/cc3200-sdk/example/common/uart_if.h: 
